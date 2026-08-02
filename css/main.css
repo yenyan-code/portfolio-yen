@@ -559,6 +559,12 @@ html.theme-transition::view-transition-old(root) {
 html.theme-transition::view-transition-new(root) {
     z-index: 2;
 }
+html.theme-transition-to-light::view-transition-old(root) {
+    z-index: 2;
+}
+html.theme-transition-to-light::view-transition-new(root) {
+    z-index: 1;
+}
 
 @keyframes fade-out {
     from { opacity: 1; }

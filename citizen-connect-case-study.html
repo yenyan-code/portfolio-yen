@@ -127,12 +127,19 @@
             width: 100%;
             height: auto;
             box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.05);
+            aspect-ratio: 2288 / 600;
         }
 
         .cs-hero-img-box img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
+        }
+
+        body.dark-mode .cs-hero-img-box {
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         /* Pills */
