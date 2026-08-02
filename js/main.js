@@ -194,10 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Click coordinates (fallback to button center if keyboard/etc triggered)
+            // Calculate exact center of the button relative to the viewport
             const rect = darkModeBtn.getBoundingClientRect();
-            const x = e.clientX ?? (rect.left + rect.width / 2);
-            const y = e.clientY ?? (rect.top + rect.height / 2);
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
 
             // Calculate distance to the furthest corner of the screen
             const r = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
