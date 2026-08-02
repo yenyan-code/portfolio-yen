@@ -203,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const r = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
             document.documentElement.classList.add('theme-transition');
-            if (!isDarkNow) document.documentElement.classList.add('theme-transition-to-light');
 
             const transition = document.startViewTransition(() => {
                 document.body.classList.toggle('dark-mode');
@@ -213,28 +212,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             transition.ready.then(() => {
-                const clipPath = [
-                    `circle(0px at ${x}px ${y}px)`,
-                    `circle(${r}px at ${x}px ${y}px)`
-                ];
-                
+                // Ensure the new view is on top during the wipe
                 document.documentElement.animate(
                     {
-                        clipPath: isDarkNow ? clipPath : [...clipPath].reverse()
+                        clipPath: [
+                            `circle(0px at ${x}px ${y}px)`,
+                            `circle(${r}px at ${x}px ${y}px)`
+                        ]
                     },
                     {
                         duration: 500,
                         easing: 'ease-in-out',
-                        pseudoElement: isDarkNow
-                            ? '::view-transition-new(root)'
-                            : '::view-transition-old(root)'
+                        pseudoElement: '::view-transition-new(root)'
                     }
                 );
             });
 
             transition.finished.then(() => {
                 document.documentElement.classList.remove('theme-transition');
-                document.documentElement.classList.remove('theme-transition-to-light');
             });
         });
     }
