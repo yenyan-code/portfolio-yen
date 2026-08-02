@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipely Case Study | Arien Destriza</title>
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/home.css">
+    
+    <!-- Lenis Smooth Scrolling CDN -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: auto !important;
+        }
+
+        /* Modern Clean Layout Overrides */
+        body {
+            background-color: #FAFAFA;
+            color: #111;
+            font-family: "Inter", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cs-container {
+            max-width: 1600px;
+            width: 94%;
+            margin: 0 auto;
+            padding: 100px 0 60px 0;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* --- SIDEBAR --- */
+        .cs-sidebar {
+            position: sticky;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .cs-back-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cs-back-link:hover {
+            color: #666;
+        }
+
+        .cs-toc-box {
+            background: #F2F2F2;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .cs-toc-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .cs-toc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cs-toc-link {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .cs-toc-link:hover {
+            background: rgba(0,0,0,0.05);
+            color: #111;
+        }
+
+        .cs-toc-link.active {
+            background: #FAF0FA;
+            color: #792B74;
+            font-weight: 600;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .cs-main {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            min-width: 0; /* prevents flex blowout */
+        }
+
+        .cs-hero-img-box {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+        }
+
+        .cs-hero-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Pills */
+        .cs-pills-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 0px; /* Reduced spacing below the plain hero image */
+            margin-bottom: 0px;
+        }
+
+        .cs-pill {
+            background: #E5E5E5;
+            color: #111;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-pill span {
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        /* Headers & Text */
+        .cs-title {
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-top: -24px; /* Counteract flex gap to position title closer to pills above */
+            margin-bottom: 2px;
+            color: #111;
+        }
+
+        .cs-intro {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            margin-top: -24px; /* Counteract flex gap to position intro text closer to title */
+            max-width: 700px;
+            margin-bottom: 8px;
+        }
+
+        /* Specs Grid */
+        .cs-specs-box {
+            background: #FAEAFA;
+            border-radius: 20px;
+            padding: 16px 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: -16px; /* Counteract flex gap to position specs closer to intro text above */
+        }
+
+        .cs-spec-col {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cs-spec-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-spec-val {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* Content Sections */
+        .cs-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 0px;
+        }
+
+        .cs-section-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-h2 {
+            font-size: 32px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #111;
+            margin: 0;
+        }
+
+        .cs-p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            max-width: 800px;
+        }
+
+        /* Lists */
+        .cs-list {
+            margin: 0;
+            padding-left: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+        }
+
+        /* Solution Grid Layout */
+        .cs-solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+            margin-top: 32px;
+            width: 100%;
+        }
+
+        .cs-solution-left {
+            display: flex;
+        }
+
+        .cs-solution-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Solution Card Base */
+        .cs-sol-card {
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cs-sol-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+        }
+
+        /* Left Card: Vertical layout */
+        .cs-sol-card-vertical {
+            background: #232526;
+            color: #FFFFFF;
+            padding: 24px;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .cs-sol-card-vertical .cs-sol-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cs-sol-card-vertical .cs-sol-title {
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.3px;
+        }
+
+        .cs-sol-card-vertical .cs-sol-desc {
+            color: #A0A5A8;
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0 0 20px 0;
+        }
+
+        .cs-sol-card-vertical .cs-sol-img-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-top: auto;
+        }
+
+        .cs-sol-card-vertical img {
+            width: 100%;
+            height: auto;
+            max-height: 240px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Right Cards: Horizontal layout */
+        .cs-sol-card-horizontal {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            padding: 24px;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cs-sol-card-yellow {
+            background: #FAF7EC; /* Soft warm yellow */
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .cs-sol-card-white {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .cs-sol-card-grey {
+            background: #FAFAFA; /* Light grey */
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .cs-sol-card-horizontal .cs-sol-title {
+            color: #111;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.3px;
+        }
+
+        .cs-sol-card-horizontal .cs-sol-desc {
+            color: #444;
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .cs-sol-card-horizontal .cs-sol-img-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-sol-card-horizontal img {
+            width: 100%;
+            height: auto;
+            max-height: 150px; /* Restored back to original size */
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Features Section Layout */
+        .cs-features-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 48px;
+            margin-top: 40px;
+            align-items: center;
+        }
+
+        .cs-features-left {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cs-feature-tab {
+            padding: 20px 24px;
+            border-radius: 20px;
+            border: 1.5px solid rgba(0, 0, 0, 0.05);
+            background: #FAFAFA;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+        }
+
+        .cs-feature-tab:hover {
+            transform: translateY(-2px);
+            border-color: rgba(121, 43, 116, 0.2);
+            background: #FCF5FC;
+        }
+
+        /* Active tab state */
+        .cs-feature-tab.cs-tab-active {
+            background: #F9EBF8; /* Soft pink/purple */
+            border-color: #792B74; /* Dark purple */
+        }
+
+        .cs-feature-tab-title {
+            margin: 0 0 6px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #111;
+            transition: color 0.3s ease;
+        }
+
+        .cs-feature-tab.cs-tab-active .cs-feature-tab-title {
+            color: #792B74;
+        }
+
+        .cs-feature-tab-desc {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.45;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .cs-feature-tab.cs-tab-active .cs-feature-tab-desc {
+            color: #3C1C3A;
+        }
+
+        /* Right Image Column */
+        .cs-features-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-feature-img-wrapper {
+            width: 100%;
+            max-width: 320px; /* Constrain phone width on desktop */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-feature-img {
+            width: 100%;
+            height: auto;
+            border-radius: 32px;
+            object-fit: contain;
+            display: block;
+            transition: opacity 0.2s ease-in-out;
+            opacity: 1;
+        }
+
+        .cs-feature-img.fade-out {
+            opacity: 0.2;
+        }
+
+        /* Design System Section */
+        .cs-ds-subsection {
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cs-ds-sub-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #111;
+            margin: 0;
+            letter-spacing: -0.3px;
+        }
+
+        /* Color Palette Swatch Box */
+        .cs-ds-color-wrap {
+            width: 100%;
+            max-width: 680px;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .cs-ds-color-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Typography layout elements */
+        .cs-ds-typo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: #FAFAFA;
+            padding: 32px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            max-width: 850px;
+        }
+
+        .cs-ds-typo-left {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cs-typo-item {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+        }
+
+        .cs-typo-label {
+            font-size: 24px;
+            font-weight: 500;
+            color: #111;
+            min-width: 40px;
+        }
+
+        .cs-typo-value {
+            color: #111;
+        }
+
+        .font-h1 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .font-h2 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+        }
+
+        .font-h3 {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: -0.2px;
+        }
+
+        .cs-ds-typo-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cs-typo-item-col {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cs-typo-label-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-typo-desc-text {
+            font-size: 18px;
+            color: #111;
+        }
+
+        .font-body {
+            font-weight: 400;
+        }
+
+        .font-small {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .cs-typo-detail {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* UI Components layout grids */
+        .cs-ds-ui-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 850px;
+        }
+
+        .cs-ds-ui-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cs-ds-ui-heading {
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            margin: 0;
+        }
+
+        .cs-ds-ui-img-box {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 12px 0;
+        }
+
+        .cs-ds-ui-img {
+            max-height: 120px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Recipely Cards layouts */
+        .cs-ds-cards-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 0.85fr 1fr;
+            gap: 24px;
+            align-items: start; /* Top aligned */
+            max-width: 850px;
+            background: #FAFAFA;
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .cs-ds-card-box {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .cs-ds-card-img {
+            width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cs-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .cs-sidebar {
+                position: relative;
+                top: 0;
+            }
+            .cs-specs-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cs-title {
+                font-size: 32px;
+            }
+            .cs-solution-grid {
+                grid-template-columns: 1fr;
+            }
+            .cs-sol-card-horizontal {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .cs-features-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .cs-feature-img-wrapper {
+                max-width: 280px;
+            }
+            .cs-ds-typo-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 24px;
+            }
+            .cs-ds-ui-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .cs-ds-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 20px;
+            }
+            .cs-ds-card-img {
+                max-height: 220px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cs-specs-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- DARK MODE OVERRIDES --- */
+        body.dark-mode {
+            background-color: #0f0f12;
+            color: #f1f1f1;
+        }
+        body.dark-mode .cs-hero-img-box {
+            background: #18181b;
+            border-color: rgba(255,255,255,0.05);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .cs-toc-box, 
+        body.dark-mode .cs-specs-box {
+            background: #251624;
+        }
+        body.dark-mode .cs-title, 
+        body.dark-mode .cs-h2, 
+        body.dark-mode .cs-toc-title, 
+        body.dark-mode .cs-spec-label, 
+        body.dark-mode .cs-back-link,
+        body.dark-mode .cs-section-label {
+            color: #f1f1f1;
+        }
+        body.dark-mode .cs-back-link:hover {
+            color: #a1a1aa;
+        }
+        body.dark-mode .cs-intro, 
+        body.dark-mode .cs-p, 
+        body.dark-mode .cs-spec-val,
+        body.dark-mode .cs-toc-link {
+            color: #a1a1aa;
+        }
+        body.dark-mode .cs-toc-link:hover {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        body.dark-mode .cs-toc-link.active {
+            background: #792B74;
+            color: #fff;
+        }
+        body.dark-mode .cs-pill {
+            background: #27272a;
+            color: #fff;
+        }
+        body.dark-mode .cs-list {
+            color: #a1a1aa;
+        }
+        body.dark-mode .cs-sol-card-yellow {
+            background: #1C1B17;
+            border-color: rgba(255,255,255,0.04);
+        }
+        body.dark-mode .cs-sol-card-yellow .cs-sol-title {
+            color: #FFFFFF;
+        }
+        body.dark-mode .cs-sol-card-yellow .cs-sol-desc {
+            color: #a1a1aa;
+        }
+        body.dark-mode .cs-sol-card-white {
+            background: #18181b;
+            border-color: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .cs-sol-card-white .cs-sol-title {
+            color: #FFFFFF;
+        }
+        body.dark-mode .cs-sol-card-white .cs-sol-desc {
+            color: #a1a1aa;
+        }
+        body.dark-mode .cs-sol-card-grey {
+            background: #18181b;
+            border-color: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .cs-sol-card-grey .cs-sol-title {
+            color: #FFFFFF;
+        }
+        body.dark-mode .cs-sol-card-grey .cs-sol-desc {
+            color: #a1a1aa;
+        }
+
+        /* Dark Mode overrides for Features */
+        body.dark-mode .cs-feature-tab {
+            background: #18181b;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .cs-feature-tab-title {
+            color: #E4E4E7;
+        }
+
+        body.dark-mode .cs-feature-tab-desc {
+            color: #A1A1AA;
+        }
+
+        body.dark-mode .cs-feature-tab:hover {
+            background: #251624;
+            border-color: rgba(217, 70, 209, 0.3);
+        }
+
+        body.dark-mode .cs-feature-tab.cs-tab-active {
+            background: #2C162B; /* Dark purple background */
+            border-color: #D946D2; /* Brighter purple border for dark mode */
+        }
+
+        body.dark-mode .cs-feature-tab.cs-tab-active .cs-feature-tab-title {
+            color: #F472B6; /* Bright pink title in dark mode */
+        }
+
+        body.dark-mode .cs-feature-tab.cs-tab-active .cs-feature-tab-desc {
+            color: #E2E8F0;
+        }
+
+        /* Dark Mode overrides for Design System */
+        body.dark-mode .cs-ds-sub-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ds-typo-grid,
+        body.dark-mode .cs-ds-cards-grid {
+            background: #18181b;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .cs-typo-label,
+        body.dark-mode .cs-typo-value,
+        body.dark-mode .cs-typo-desc-text {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-typo-label-text {
+            color: #A1A1AA;
+        }
+
+        body.dark-mode .cs-typo-detail {
+            color: #71717A;
+        }
+
+        body.dark-mode .cs-ds-ui-heading {
+            color: #A1A1AA;
+        }
+
+        /* Reflection Section Styling */
+        .cs-reflection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+            width: 100%;
+        }
+
+        .cs-reflection-card {
+            background: #FDF4FC; /* Soft pink-ish fill from screenshot */
+            border: 1px solid rgba(121, 43, 116, 0.08);
+            border-radius: 24px;
+            padding: 32px 28px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cs-reflection-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(121, 43, 116, 0.06);
+        }
+
+        .cs-ref-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111;
+            margin: 0;
+            letter-spacing: -0.3px;
+        }
+
+        .cs-ref-card-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+            margin: 0;
+        }
+
+        /* Responsive overrides for Reflection */
+        @media (max-width: 900px) {
+            .cs-reflection-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .cs-reflection-card {
+                padding: 24px;
+            }
+        }
+
+        /* Dark mode overrides for Reflection */
+        body.dark-mode .cs-reflection-card {
+            background: #251624; /* Dark purple background */
+            border-color: rgba(217, 70, 209, 0.1);
+        }
+
+        body.dark-mode .cs-ref-card-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ref-card-text {
+            color: #D4D4D8;
+        }
+
+        /* Showcase Banner Container styling */
+        .cs-reflection-showcase {
+            width: 100%;
+            margin-top: 56px;
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #FAFAFA;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 32px;
+            box-sizing: border-box;
+        }
+
+        .cs-reflection-showcase-img {
+            width: 100%;
+            height: auto;
+            max-height: 550px;
+            object-fit: contain;
+            display: block;
+        }
+
+        body.dark-mode .cs-reflection-showcase {
+            background: #18181b;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* User Flow Diagram */
+        .cs-ds-flow-wrap {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #FAFAFA;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 24px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        .cs-ds-flow-img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            display: block;
+        }
+
+        body.dark-mode .cs-ds-flow-wrap {
+            background: #18181b;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Reflection Subtitle Styles */
+        .cs-ref-subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            color: #111;
+            margin: -8px 0 0 0;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        body.dark-mode .cs-ref-subtitle {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <!-- Prevent dark mode flash of unstyled content -->
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- ==========================================================================
+         FLOATING TOP NAVIGATION BAR (Exact replica from index.html)
+         ========================================================================== -->
+    <header class="header-nav">
+        <a href="index.html" class="header-logo">
+            <img src="img/yen-final-logo.png" alt="Logo" class="logo-icon">
+            <span>Arien Destriza</span>
+        </a>
+        <div class="navbar-pill-wrap">
+            <nav class="navbar-pill">
+                <a href="index.html" class="nav-link active">Work</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="explorations.html" class="nav-link">Explorations</a>
+                <a href="https://drive.google.com/file/d/1kz8zw9jtlvqincgCbemYBvrQwv8y7zAo/view?usp=drive_link" target="_blank" rel="noopener" class="nav-link">Resume</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
+                <span class="dark-mode-text">Dark Mode</span>
+                <span class="dark-mode-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main class="cs-container">
+        
+        <!-- SIDEBAR (Left Column) -->
+        <aside class="cs-sidebar">
+            <a href="index.html#work" class="cs-back-link">
+                ← BACK TO WORK
+            </a>
+
+            <div class="cs-toc-box">
+                <div class="cs-toc-title">Table of Contents</div>
+                <div class="cs-toc-list">
+                    <a href="#context" class="cs-toc-link active">1. Context</a>
+                    <a href="#solution" class="cs-toc-link">2. The solution</a>
+                    <a href="#features" class="cs-toc-link">3. Features</a>
+                    <a href="#design-system" class="cs-toc-link">4. Design</a>
+                    <a href="#reflection" class="cs-toc-link">5. Reflection</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT (Right Column) -->
+        <article class="cs-main">
+            
+            <!-- Hero Image -->
+            <div class="cs-hero-img-box">
+                <img src="works-recipely-img/recipely-bgphoto.png" alt="Recipely Mockups">
+            </div>
+
+            <!-- Tags -->
+            <div class="cs-pills-row">
+                <div class="cs-pill">TYPE <span>Personal Project</span></div>
+                <div class="cs-pill">PLATFORM <span>Mobile App</span></div>
+                <div class="cs-pill">STATUS <span>Ongoing</span></div>
+            </div>
+
+            <!-- Title & Intro -->
+            <h1 class="cs-title">Recipely — Scan. Cook. Enjoy</h1>
+            <p class="cs-intro">
+                I designed Recipely as a passion project. It is a recipe app focused on making home cooking simple, accessible, and enjoyable for everyone.
+            </p>
+
+            <!-- Specs Grid -->
+            <div class="cs-specs-box">
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">ROLE</div>
+                    <div class="cs-spec-val">
+                        UI/UX Designer<br>
+                        Visual Designer
+                    </div>
+                </div>
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">TIMELINE</div>
+                    <div class="cs-spec-val">
+                        Self-Paced
+                    </div>
+                </div>
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">TOOLS</div>
+                    <div class="cs-spec-val">
+                        Figma<br>
+                        FigJam<br>
+                        Notion
+                    </div>
+                </div>
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">SKILLS</div>
+                    <div class="cs-spec-val">
+                        User Research<br>
+                        Interaction Design<br>
+                        Visual Design
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sections -->
+            <section class="cs-section" id="context">
+                <div class="cs-section-label">CONTEXT</div>
+                <h2 class="cs-h2">Deciding what to cook is tricky</h2>
+                <p class="cs-p">
+                    Having spent time living in a boarding house, I know from experience that figuring out what to eat is tough. Cooking your own meals is no doubt the best way to save money and eat well, but it's really difficult to find recipes that actually match the random leftover ingredients you already have in your kitchen.
+                </p>
+            </section>
+
+            <!-- Solution Section -->
+            <section class="cs-section" id="solution">
+                <div class="cs-section-label">THE SOLUTION</div>
+                <h2 class="cs-h2">Instant culinary inspiration from the ingredients you already own</h2>
+                <p class="cs-p">
+                    The main thing that prevents people from cooking at home is that most of the time, recipe apps are either:
+                </p>
+                <ol class="cs-list">
+                    <li>Search-based and assume you already know exactly what you want to cook, or</li>
+                    <li>Filled with complex recipes requiring long lists of ingredients you don't have.</li>
+                </ol>
+                <p class="cs-p">
+                    As a solution, I designed Recipely to generate personalized meal ideas based exactly on what is in your fridge — using an AI camera scanner that instantly recognizes your leftover ingredients. This way, we can eliminate the friction of manual data entry and deliver highly matchable recipes so users can start cooking without needing an extra trip to the grocery store.
+                </p>
+                
+                <div class="cs-solution-grid">
+                    <!-- Left: Scan, don't type -->
+                    <div class="cs-solution-left">
+                        <div class="cs-sol-card cs-sol-card-vertical">
+                            <div class="cs-sol-text">
+                                <h3 class="cs-sol-title">Scan, don't type</h3>
+                                <p class="cs-sol-desc">Instantly detect leftover ingredients using your camera — no manual data entry required.</p>
+                            </div>
+                            <div class="cs-sol-img-wrap">
+                                <img src="works-recipely-img/recipely-scan-don't-type.png" alt="Scan ingredients with camera mockup">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right: Match what you have & Stay in the flow -->
+                    <div class="cs-solution-right">
+                        <!-- Top: Match what you have -->
+                        <div class="cs-sol-card cs-sol-card-horizontal cs-sol-card-yellow">
+                            <div class="cs-sol-text">
+                                <h3 class="cs-sol-title">Match what you have</h3>
+                                <p class="cs-sol-desc">See exactly which recipes you can cook right now with clear visual match indicators.</p>
+                            </div>
+                            <div class="cs-sol-img-wrap">
+                                <img src="works-recipely-img/recipely-match-what-you-have.png" alt="Match what you have mockup">
+                            </div>
+                        </div>
+                        <!-- Bottom: Stay in the flow -->
+                        <div class="cs-sol-card cs-sol-card-horizontal cs-sol-card-grey">
+                            <div class="cs-sol-text">
+                                <h3 class="cs-sol-title">Stay in the flow</h3>
+                                <p class="cs-sol-desc">A high-contrast, distraction-free cooking mode designed for messy hands and busy kitchens.</p>
+                            </div>
+                            <div class="cs-sol-img-wrap">
+                                <img src="works-recipely-img/recipely-stay-in-the-flow.png" alt="Stay in the flow instruction list mockup">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="cs-section" id="features">
+                <div class="cs-section-label">FEATURES</div>
+                <h2 class="cs-h2">Built to make home cooking completely seamless and stress-free.</h2>
+                <p class="cs-p">
+                    Recipely's interface was built to eliminate the most common pain points of home cooking. From instantly recognizing ingredients to guiding you through messy cooking steps, every feature is tailored specifically for real-world kitchen environments.
+                </p>
+                
+                <div class="cs-features-grid">
+                    <!-- Left: Interactive Tabs -->
+                    <div class="cs-features-left">
+                        <div class="cs-feature-tab cs-tab-active" data-src="works-recipely-img/recipely-scan.png">
+                            <h3 class="cs-feature-tab-title">Camera-First Workflow</h3>
+                            <p class="cs-feature-tab-desc">A prominent scanning UI that detects your leftover ingredients instantly, prioritizing speed over manual data entry.</p>
+                        </div>
+                        <div class="cs-feature-tab" data-src="works-recipely-img/recipely-AIrecommendations.png">
+                            <h3 class="cs-feature-tab-title">Smart Recipe Recommendations</h3>
+                            <p class="cs-feature-tab-desc">Instantly get AI-powered recipe suggestions based on your scanned ingredients, completely eliminating the guesswork of what to cook.</p>
+                        </div>
+                        <div class="cs-feature-tab" data-src="works-recipely-img/recipely-saved-recipes.png">
+                            <h3 class="cs-feature-tab-title">Save & Organize Favorites</h3>
+                            <p class="cs-feature-tab-desc">A simple bookmarking system to save the recipes you love and build a personalized digital cookbook for quick access.</p>
+                        </div>
+                        <div class="cs-feature-tab" data-src="works-recipely-img/recipely-feed.png">
+                            <h3 class="cs-feature-tab-title">Social Recipe Feed</h3>
+                            <p class="cs-feature-tab-desc">An interactive community newsfeed where you can share your culinary creations, connect with friends, and discover fresh inspiration.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Dynamic Image Preview -->
+                    <div class="cs-features-right">
+                        <div class="cs-feature-img-wrapper">
+                            <img id="cs-feature-image" class="cs-feature-img" src="works-recipely-img/recipely-scan.png" alt="Recipely app workflow screen preview">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design Section -->
+            <section class="cs-section" id="design-system">
+                <div class="cs-section-label">DESIGN</div>
+                
+                <!-- Information Architecture & User Flow Subsection -->
+                <div class="cs-ds-subsection" style="margin-top: 0;">
+                    <h2 class="cs-h2">Information Architecture & User Flow</h2>
+                    <p class="cs-p">
+                        Before jumping into high-fidelity screens, I mapped the complete user journey in FigJam to ensure the scanning-to-cooking pipeline required minimum friction. Every touchpoint was designed with user-centered principles — reducing cognitive load and ensuring intuitive navigation.
+                    </p>
+                    <div class="cs-ds-flow-wrap">
+                        <img src="works-recipely-img/recipely-user-flow.jpg" alt="Recipely app information architecture and user flow diagram" class="cs-ds-flow-img">
+                    </div>
+                </div>
+
+                <!-- Cohesive Visual Identity Subsection -->
+                <div class="cs-ds-subsection" style="margin-top: 56px;">
+                    <h2 class="cs-h2">Establishing a cohesive visual identity</h2>
+                    <p class="cs-p">
+                        To ensure visual consistency and a seamless user experience across the app, a comprehensive design system was established. This system includes a clean modern typeface, structured UI components, and a high-contrast color palette optimized for visibility in active kitchen environments.
+                    </p>
+                    
+                    <!-- Color Palette Subsection -->
+                    <div class="cs-ds-color-sub" style="margin-top: 24px;">
+                        <h3 class="cs-ds-sub-title">Color Palette</h3>
+                        <div class="cs-ds-color-wrap">
+                            <img src="works-recipely-img/recipely-color-pallete.png" alt="Recipely design system color palette swatch grids" class="cs-ds-color-img">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Typography Subsection -->
+                <div class="cs-ds-subsection">
+                    <h3 class="cs-ds-sub-title">Typography</h3>
+                    <div class="cs-ds-typo-grid">
+                        <div class="cs-ds-typo-left">
+                            <div class="cs-typo-item">
+                                <span class="cs-typo-label">H1</span>
+                                <span class="cs-typo-value font-h1">Recipely App</span>
+                            </div>
+                            <div class="cs-typo-item">
+                                <span class="cs-typo-label">H2</span>
+                                <span class="cs-typo-value font-h2">Recipely App</span>
+                            </div>
+                            <div class="cs-typo-item">
+                                <span class="cs-typo-label">H3</span>
+                                <span class="cs-typo-value font-h3">Recipely App</span>
+                            </div>
+                        </div>
+                        <div class="cs-ds-typo-right">
+                            <div class="cs-typo-item-col">
+                                <span class="cs-typo-label-text">Body</span>
+                                <span class="cs-typo-desc-text font-body">Discover thousands of delicious recipes...</span>
+                                <span class="cs-typo-detail">16pt Regular</span>
+                            </div>
+                            <div class="cs-typo-item-col" style="margin-top: 24px;">
+                                <span class="cs-typo-label-text">Small</span>
+                                <span class="cs-typo-desc-text font-small">Cooking Time</span>
+                                <span class="cs-typo-detail">15pt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UI Components Subsection -->
+                <div class="cs-ds-subsection">
+                    <h3 class="cs-ds-sub-title">UI Components</h3>
+                    <div class="cs-ds-ui-grid">
+                        <div class="cs-ds-ui-col">
+                            <h4 class="cs-ds-ui-heading">Primary</h4>
+                            <div class="cs-ds-ui-img-box">
+                                <img src="works-recipely-img/recipely-UI-primary.png" alt="Primary cooking action buttons" class="cs-ds-ui-img">
+                            </div>
+                        </div>
+                        <div class="cs-ds-ui-col">
+                            <h4 class="cs-ds-ui-heading">Input Fields</h4>
+                            <div class="cs-ds-ui-img-box">
+                                <img src="works-recipely-img/recipely-UI-input.png" alt="Email address input text fields" class="cs-ds-ui-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recipely Cards Subsection -->
+                <div class="cs-ds-subsection">
+                    <h3 class="cs-ds-sub-title">Recipely Cards</h3>
+                    <div class="cs-ds-cards-grid">
+                        <div class="cs-ds-card-box">
+                            <img src="works-recipely-img/recipely-card-2.png" alt="Recipe Card Stir-Fried Shrimp item layout" class="cs-ds-card-img">
+                        </div>
+                        <div class="cs-ds-card-box">
+                            <img src="works-recipely-img/recipely-card-1.png" alt="Recipe Card Adobo item layout" class="cs-ds-card-img">
+                        </div>
+                        <div class="cs-ds-card-box">
+                            <img src="works-recipely-img/recipely card-3.png" alt="Recipe Card Mediterranean Quinoa Salad item layout" class="cs-ds-card-img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reflection Section -->
+            <section class="cs-section" id="reflection">
+                <div class="cs-section-label">REFLECTION</div>
+                <h2 class="cs-h2">What I've Learned</h2>
+                <p class="cs-ref-subtitle">
+                    Building an app for real kitchen environments is a unique challenge.
+                </p>
+                
+                <!-- What I've Learned Cards Grid -->
+                <div class="cs-reflection-grid">
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Accessibility is a necessity</h3>
+                        <p class="cs-ref-card-text">
+                            Designing for a kitchen taught me that UI must be highly glanceable. When hands are messy, high-contrast states and hands-free interactions become essential, not optional.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Simplicity beats complexity</h3>
+                        <p class="cs-ref-card-text">
+                            I learned that users don't want endless menus. They want to scan, match, and cook. I focused on scanner speed and instant matching as the core user experience.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Designing for sustainability</h3>
+                        <p class="cs-ref-card-text">
+                            Beyond cooking, Recipely is about reducing food waste. I learned that designing subtle visual rewards (like showing users how many ingredients they saved from going to waste) can gently encourage eco-friendly habits in a positive way.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="cs-h2" style="margin-top: 56px;">What's Next?</h2>
+                <p class="cs-ref-subtitle">
+                    Future features currently on the Recipely roadmap.
+                </p>
+
+                <!-- What's Next Cards Grid -->
+                <div class="cs-reflection-grid">
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">AI Budget-Based Planning</h3>
+                        <p class="cs-ref-card-text">
+                            UI dashboards that suggest recipes matching a user's budget, displaying local market prices, and giving a clear cost breakdown of every dish.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Pantry Expiration Tracking</h3>
+                        <p class="cs-ref-card-text">
+                            Alert components and push notification layouts for expiring ingredients—helping users reduce food waste through timely, intuitive nudges.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Voice-Guided Cooking</h3>
+                        <p class="cs-ref-card-text">
+                            Hands-free UI states and voice accessibility patterns for the active cooking mode, allowing users to navigate instructions easily without touching the screen.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Final Showcase Mockup Banner -->
+                <div class="cs-reflection-showcase">
+                    <img src="works-recipely-img/recipely-last.png" alt="Recipely app screen mockup showcase" class="cs-reflection-showcase-img">
+                </div>
+            </section>
+
+        </article>
+
+    </main>
+
+    <!-- ==========================================================================
+         GLOBAL FOOTER (Exact replica of Itti's footer)
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="footer-top-container">
+            <!-- Left Side: Icon + Arien Destriza -->
+            <div class="footer-brand-wrap">
+                <img src="img/yen-final-logo.png" alt="Logo" class="footer-asterisk-icon">
+                <span class="footer-brand-name">Arien Destriza</span>
+            </div>
+
+            <!-- Right Side: 2 Columns (Main & Contact) -->
+            <div class="footer-columns-wrap">
+                <!-- Col 1: Main -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Main</span>
+                    <div class="footer-nav-list">
+                        <a href="index.html#work" class="footer-nav-link">Work</a>
+                        <a href="about.html" class="footer-nav-link">About</a>
+                        <a href="explorations.html" class="footer-nav-link">Explorations</a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Contact -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Contact</span>
+                    <a href="mailto:yindestriza@gmail.com" class="footer-contact-link">yindestriza@gmail.com</a>
+                    
+                    <span class="footer-col-header" style="margin-top: 20px;">Phone</span>
+                    <span class="footer-phone-text">0908-772-4983</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giant Bottom Banner Typography -->
+        <div class="footer-giant-banner">
+            <span>Arien Destriza</span>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <!-- Custom JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Features tab switcher
+            const tabs = document.querySelectorAll('.cs-feature-tab');
+            const img = document.getElementById('cs-feature-image');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetSrc = tab.getAttribute('data-src');
+                    if (img.getAttribute('src') === targetSrc) return;
+                    
+                    // Add fade-out class for smooth transition
+                    img.classList.add('fade-out');
+                    
+                    // Remove active state from all tabs
+                    tabs.forEach(t => t.classList.remove('cs-tab-active'));
+                    
+                    // Add active state to current tab
+                    tab.classList.add('cs-tab-active');
+                    
+                    // Change image source after fade-out transition completes
+                    setTimeout(() => {
+                        img.src = targetSrc;
+                        img.classList.remove('fade-out');
+                    }, 200);
+                });
+            });
+
+            // Table of Contents Active Link Tracking on Scroll
+            const tocLinks = document.querySelectorAll('.cs-toc-link');
+            const caseSections = document.querySelectorAll('section.cs-section[id]');
+
+            function updateActiveToC() {
+                const scrollPos = window.scrollY + 250; // offset to trigger active state early as section enters viewport
+                
+                // If scroll is near top, default to first section (Context)
+                if (window.scrollY < 300) {
+                    tocLinks.forEach((l, idx) => {
+                        if (idx === 0) l.classList.add('active');
+                        else l.classList.remove('active');
+                    });
+                    return;
+                }
+
+                let currentId = '';
+                caseSections.forEach(section => {
+                    const top = section.offsetTop;
+                    const height = section.offsetHeight;
+                    const id = section.getAttribute('id');
+                    
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        currentId = id;
+                    }
+                });
+
+                // Fallback for bottom of page (highlight Reflection if scrolled to the end of the content)
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 150) {
+                    currentId = 'reflection';
+                }
+
+                if (currentId) {
+                    tocLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            }
+
+
+            window.addEventListener('scroll', updateActiveToC);
+            window.addEventListener('resize', updateActiveToC);
+            updateActiveToC(); // Run once initially
+        });
+    </script>
+</body>
+</html>

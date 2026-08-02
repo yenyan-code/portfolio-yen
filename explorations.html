@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorations — Arien Destriza</title>
+    <meta name="description" content="Explorations outside of UI/UX Design by Arien Destriza.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/explorations.css">
+</head>
+<body>
+    <!-- Prevent dark mode flash of unstyled content -->
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <!-- Top Floating Navbar -->
+    <header class="header-nav">
+        <a href="index.html" class="header-logo">
+            <img src="img/yen-final-logo.png" alt="Logo" class="logo-icon">
+            <span>Arien Destriza</span>
+        </a>
+        <div class="navbar-pill-wrap">
+            <nav class="navbar-pill">
+                <a href="index.html#work" class="nav-link">Work</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="explorations.html" class="nav-link active">Explorations</a>
+                <a href="https://drive.google.com/file/d/1kz8zw9jtlvqincgCbemYBvrQwv8y7zAo/view?usp=drive_link" target="_blank" rel="noopener" class="nav-link">Resume</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
+                <span class="dark-mode-text">Dark Mode</span>
+                <span class="dark-mode-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main class="explorations-container" id="top">
+        <!-- Header Section -->
+        <div class="explorations-header">
+            <a href="index.html#explorations" class="back-to-work">
+                <span class="arrow">←</span> Back to Explorations
+            </a>
+            <h1 class="explorations-title">explorations</h1>
+            <p class="explorations-subtitle">explorations outside of UI/UX Design</p>
+        </div>
+
+        <!-- Section 1: Sayao Backyard Garden -->
+        <section class="exp-section" id="sayao-garden">
+            <div class="exp-row-2col">
+                <div class="exp-info">
+                    <h2 class="exp-section-title">Sayao Backyard Garden — Visual Identity</h2>
+                    <div class="exp-tags">Brand Guidelines • Logo Design • Typography • Color System</div>
+                    <p class="exp-description">
+                        Developed a complete visual identity system for a local plant nursery in Sayao, Bantigue, Bantayan, including logo mark, typography hierarchy, and social media assets.
+                    </p>
+                </div>
+                <div class="exp-img-wrapper main-sbg-logo">
+                    <img src="explorations-img/sbg-logo.png" alt="Sayao Logo">
+                </div>
+            </div>
+
+            <!-- SBG Grid Layout -->
+            <div class="sbg-grid-row1">
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/sbg-landscape.png" alt="Sayao Banner Landscape">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/sbg-color-1.png" alt="Sayao Color Swatch 1">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/sbg-color-2.png" alt="Sayao Color Swatch 2">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/sbg-logo-green.png" alt="Sayao Green Logo">
+                </div>
+            </div>
+            <div class="sbg-grid-row2">
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/sbg-logo-concept.png.png" alt="Sayao Logo Concept">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/sbg-font 3.png" alt="Sayao Typography Swatch">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/sbg-sma-a.png.png" alt="Sayao Social Media Asset">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Graphic Design -->
+        <section class="exp-section" id="graphic-design">
+            <div class="exp-row-2col">
+                <div class="exp-info">
+                    <h2 class="exp-section-title">Community &amp; Digital Graphics — Graphic Design</h2>
+                    <div class="exp-tags">Social Media • Character Art</div>
+                    <p class="exp-description">
+                        Created custom Facebook group graphics, subject icon sets for academic groups (BSIT), and personalized digital illustrations.
+                    </p>
+                </div>
+                <div class="exp-img-wrapper main-gd-logo">
+                    <img src="explorations-img/yen-graphic-design.png" alt="AJUA Graphics">
+                </div>
+            </div>
+
+            <!-- Graphic Design Grid Layout -->
+            <div class="gd-grid-container">
+                <!-- Left Column (Wide items) -->
+                <div class="gd-grid-left">
+                    <div class="exp-img-wrapper gd-wrapper-landscape">
+                        <img src="explorations-img/gd-ajua-fb-page.png" alt="AJUA Facebook Page">
+                    </div>
+                    <div class="exp-img-wrapper gd-wrapper-icons">
+                        <img src="explorations-img/gd-gcphoto.png.png" alt="BSIT Group Icons">
+                    </div>
+                </div>
+
+                <!-- Right Column (Square/Vertical items) -->
+                <div class="gd-grid-right">
+                    <div class="exp-img-wrapper gd-wrapper-square">
+                        <img src="explorations-img/gd-urich.png" alt="Urich Graphic">
+                    </div>
+                    <div class="exp-img-wrapper gd-wrapper-square">
+                        <img src="explorations-img/gd-halloween.png" alt="Halloween Graphic">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row (Two horizontal cards side-by-side) -->
+            <div class="gd-grid-bottom">
+                <div class="exp-img-wrapper gd-wrapper-bottom">
+                    <img src="explorations-img/gd-shua.png" alt="Joshua Birthday Graphic">
+                </div>
+                <div class="exp-img-wrapper gd-wrapper-bottom">
+                    <img src="explorations-img/gd-cao.png" alt="Butterfly Graphic">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Photography -->
+        <section class="exp-section" id="photography">
+            <div class="exp-row-2col">
+                <div class="exp-info">
+                    <h2 class="exp-section-title">Lens &amp; Perspective — Photography</h2>
+                    <div class="exp-tags">Landscape • Candid • Storytelling</div>
+                    <p class="exp-description">
+                        A collection of captured moments, exploring play of light, shadows, and natural elements.
+                    </p>
+                </div>
+                <div class="exp-img-wrapper main-photo-wrapper">
+                    <img src="explorations-img/yen-photography.png" alt="Featured Dogs on Beach">
+                </div>
+            </div>
+
+            <!-- PG Grid Layout -->
+            <div class="pg-grid-row1">
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/pg-yoni&amp;dog.png" alt="Yoni and Dog on Beach">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/pg-dahon.png" alt="Close-up Green Leaves">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/pg-chingkay.png" alt="Puppy in Bicycle Basket">
+                </div>
+            </div>
+            <div class="pg-grid-row2">
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/pg-bntyn-sunset.png" alt="Bantayan Sunset">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/pg-pantalan-btyn.png" alt="Bantayan Pier at Dusk">
+                </div>
+                <div class="exp-img-wrapper">
+                    <img src="explorations-img/pg-pangpang.png" alt="Turquoise Sea Cliffs">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top-container">
+            <div class="footer-brand-wrap">
+                <img src="img/yen-final-logo.png" alt="Logo" class="footer-asterisk-icon">
+                <span class="footer-brand-name">Arien Destriza</span>
+            </div>
+            <div class="footer-columns-wrap">
+                <div class="footer-col">
+                    <span class="footer-col-header">Main</span>
+                    <div class="footer-nav-list">
+                        <a href="index.html#work" class="footer-nav-link">Work</a>
+                        <a href="about.html" class="footer-nav-link">About</a>
+                        <a href="explorations.html" class="footer-nav-link">Explorations</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-col-header">Contact</span>
+                    <a href="mailto:yindestriza@gmail.com" class="footer-contact-link">yindestriza@gmail.com</a>
+                    <span class="footer-col-header" style="margin-top: 20px;">Phone</span>
+                    <span class="footer-phone-text">0908-772-4983</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <!-- Global Javascript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

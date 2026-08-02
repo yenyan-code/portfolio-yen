@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Case Studies | Arien Destriza</title>
+    <meta name="description" content="Explore selected design case studies, web prototypes, and UI/UX projects crafted by Arien Destriza.">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/works.css">
+    
+    <!-- Lenis Smooth Scrolling CDN -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Prevent dark mode flash of unstyled content -->
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- ==========================================================================
+         NAVIGATION HEADER
+         ========================================================================== -->
+    <header class="header-nav">
+        <div class="container">
+            <nav class="navbar">
+                <div class="brand-wrap">
+                    <a href="index.html" class="nav-avatar">A</a>
+                    <div class="brand-info">
+                        <a href="index.html" class="brand-name">Arien Destriza</a>
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Open for work</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link-item">Home</a>
+                    
+                    <div class="nav-dropdown-wrapper">
+                        <a href="Works.html" class="nav-link-item active">
+                            Projects
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6 6 6-6"/></svg>
+                        </a>
+
+                        <div class="projects-mega-menu">
+                            <span class="mega-menu-title">Case Studies</span>
+                            <div class="mega-case-list">
+                                <a href="recipely-case-study.html" class="mega-case-item">
+                                    <div class="mega-case-icon icon-recipely">R</div>
+                                    <div class="mega-case-info">
+                                        <span class="mega-case-name">Recipely</span>
+                                        <span class="mega-case-meta">Meal Planning UI/UX • 3 min</span>
+                                    </div>
+                                </a>
+
+                                <a href="citizen-connect-case-study.html" class="mega-case-item">
+                                    <div class="mega-case-icon icon-citizen">C</div>
+                                    <div class="mega-case-info">
+                                        <span class="mega-case-name">Citizen Connect</span>
+                                        <span class="mega-case-meta">Civic Tech Portal • 4 min</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="hamburger" aria-label="Toggle navigation menu">Menu</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         PROJECTS ARCHIVE HEADER & FILTER PILLS
+         ========================================================================== -->
+    <main>
+        <section class="container" style="padding-top: 160px;">
+            <div class="section-header" style="border-bottom: none; margin-bottom: 0;">
+                <div>
+                    <span class="tag tag-green" style="margin-bottom: 16px;">Archive</span>
+                    <h1 class="section-title" style="font-size: 48px;">Projects & Experiments</h1>
+                </div>
+                <span class="section-subtitle">Showing all works (2023 - 2026)</span>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <button class="filter-pill active" data-filter="all">All Projects (4)</button>
+                <button class="filter-pill" data-filter="ui-ux">UI/UX Design (2)</button>
+                <button class="filter-pill" data-filter="web-app">Web Applications (1)</button>
+                <button class="filter-pill" data-filter="strategy">Strategy & Prototyping (1)</button>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             FULL ARCHIVE GRID
+             ========================================================================== -->
+        <section class="container">
+            <div class="archive-grid">
+                <!-- Card 1: Recipely -->
+                <a href="recipely-case-study.html" class="work-card" data-category="ui-ux">
+                    <div class="work-card-img-wrap">
+                        <div class="mockup-ui">
+                            <div class="mockup-header">
+                                <span class="mockup-dot" style="background: #ef4444;"></span>
+                                <span class="mockup-dot" style="background: #f59e0b;"></span>
+                                <span class="mockup-dot" style="background: #10b981;"></span>
+                            </div>
+                            <div class="mockup-body" style="background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(239,68,68,0.05)); color: #f97316;">
+                                🥗 Recipely AI Planner
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-top">
+                            <h3 class="work-card-title">Recipely</h3>
+                            <span class="tag">UI/UX Design</span>
+                        </div>
+                        <p class="work-card-desc">
+                            An AI-powered recipe discovery and automated grocery planning application designed to reduce food waste and streamline daily meal prep.
+                        </p>
+                        <div class="work-card-meta">
+                            <span>Case Study • 3 min read</span>
+                            <div class="work-card-link-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: Citizen Connect -->
+                <a href="citizen-connect-case-study.html" class="work-card" data-category="web-app">
+                    <div class="work-card-img-wrap">
+                        <div class="mockup-ui">
+                            <div class="mockup-header">
+                                <span class="mockup-dot" style="background: #ef4444;"></span>
+                                <span class="mockup-dot" style="background: #f59e0b;"></span>
+                                <span class="mockup-dot" style="background: #10b981;"></span>
+                            </div>
+                            <div class="mockup-body" style="background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(99,102,241,0.05)); color: #3b82f6;">
+                                🏛️ Citizen Portal v2.0
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-top">
+                            <h3 class="work-card-title">Citizen Connect</h3>
+                            <span class="tag">Web Application</span>
+                        </div>
+                        <p class="work-card-desc">
+                            A modernized civic engagement web portal connecting local community residents with municipal services, incident reporting, and public initiatives.
+                        </p>
+                        <div class="work-card-meta">
+                            <span>Case Study • 4 min read</span>
+                            <div class="work-card-link-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: Enclave Crypto Banking -->
+                <div class="work-card" data-category="strategy" style="cursor: default;">
+                    <div class="work-card-img-wrap">
+                        <div class="mockup-ui">
+                            <div class="mockup-header">
+                                <span class="mockup-dot" style="background: #ef4444;"></span>
+                                <span class="mockup-dot" style="background: #f59e0b;"></span>
+                                <span class="mockup-dot" style="background: #10b981;"></span>
+                            </div>
+                            <div class="mockup-body" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(236,72,153,0.05)); color: #8b5cf6;">
+                                🔐 Enclave Vault
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-top">
+                            <h3 class="work-card-title">Enclave Neo-Bank</h3>
+                            <span class="tag">Strategy & Prototyping</span>
+                        </div>
+                        <p class="work-card-desc">
+                            Founding design strategy and interactive security workflows for a next-generation decentralized crypto asset vault and payment gateway.
+                        </p>
+                        <div class="work-card-meta">
+                            <span>Concept Prototype • 2025</span>
+                            <span class="tag tag-green">Shipped</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Universal Workspace Annotations -->
+                <div class="work-card" data-category="ui-ux" style="cursor: default;">
+                    <div class="work-card-img-wrap">
+                        <div class="mockup-ui">
+                            <div class="mockup-header">
+                                <span class="mockup-dot" style="background: #ef4444;"></span>
+                                <span class="mockup-dot" style="background: #f59e0b;"></span>
+                                <span class="mockup-dot" style="background: #10b981;"></span>
+                            </div>
+                            <div class="mockup-body" style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(59,130,246,0.05)); color: #10b981;">
+                                💬 Workspace Sync
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-top">
+                            <h3 class="work-card-title">Universal Annotations</h3>
+                            <span class="tag">UI/UX Design</span>
+                        </div>
+                        <p class="work-card-desc">
+                            A unified cross-platform commenting and annotation experience designed for enterprise document collaboration and real-time review workflows.
+                        </p>
+                        <div class="work-card-meta">
+                            <span>Design System • 2024</span>
+                            <span class="tag tag-green">Enterprise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+         GLOBAL FOOTER
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="footer-title">Let's build something extraordinary together.</h2>
+                <button class="btn-copy-email" data-email="ariendestriza@gmail.com" aria-label="Copy Arien's email to clipboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                    <span>ariendestriza@gmail.com</span>
+                </button>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Arien Destriza. Designed & Coded with modular craftsmanship.</span>
+                <div class="social-links">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener">Twitter/X</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

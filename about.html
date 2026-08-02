@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Arien Destriza</title>
+    <meta name="description" content="About Arien Destriza - UI/UX Designer specializing in Figma & Design Systems.">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/home.css">
+    <style>
+        .about-page-wrap {
+            max-width: 1120px;
+            margin: 160px auto 100px;
+            padding: 0 40px;
+        }
+
+        /* 2-Column Hero layout */
+        .about-hero-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-hero-left {
+            width: 100%;
+        }
+
+        .about-hero-left img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 423 / 586;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+            display: block;
+        }
+        body.dark-mode .about-hero-left img {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .about-hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .about-title {
+            font-family: var(--font-sans);
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin: 0 0 10px 0;
+            color: var(--text-dark);
+        }
+
+        .about-text {
+            font-size: 20px;
+            line-height: 1.7;
+            color: var(--text-muted-dark);
+            margin: 0;
+        }
+
+        .about-full-paragraph {
+            font-size: 20px;
+            line-height: 1.7;
+            color: var(--text-muted-dark);
+            margin-bottom: 40px;
+        }
+
+        /* Middle Grid Layout */
+        .about-middle-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr 1.2fr;
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .about-middle-grid .about-img-wrap {
+            height: 280px;
+            background-color: rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .about-middle-grid .about-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition), filter var(--transition);
+        }
+
+        .about-middle-grid .about-img-wrap:hover img {
+            transform: scale(1.02);
+            filter: blur(5px) brightness(0.85);
+        }
+
+        /* Hover Captions for the 3 pictures */
+        .hover-caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-family: var(--font-mono), monospace;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center;
+            width: max-content;
+            max-width: 85%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            line-height: 1.4;
+        }
+
+        .about-middle-grid .about-img-wrap:hover .hover-caption {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Fun Facts Section */
+        .fun-facts-section {
+            margin-top: 80px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            padding-top: 60px;
+        }
+
+        body.dark-mode .about-img-wrap,
+        body.dark-mode .about-fact-img-wrap {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .fun-facts-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .fun-facts-title {
+            font-family: var(--font-sans);
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            color: var(--text-dark);
+        }
+
+        .about-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .about-fact-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .about-fact-img-wrap {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .about-fact-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-fact-img-wrap img:hover {
+            transform: scale(1.03);
+        }
+
+        .about-fact-desc {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text-muted-dark);
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .about-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-middle-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-middle-grid .about-img-wrap {
+                height: 240px;
+            }
+            .about-facts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-facts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Prevent dark mode flash of unstyled content -->
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- Top Navigation Bar & Logo -->
+    <header class="header-nav">
+        <a href="index.html" class="header-logo">
+            <img src="img/yen-final-logo.png" alt="Logo" class="logo-icon">
+            <span>Arien Destriza</span>
+        </a>
+        <div class="navbar-pill-wrap">
+            <nav class="navbar-pill">
+                <a href="index.html#work" class="nav-link">Work</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="explorations.html" class="nav-link">Explorations</a>
+                <a href="https://drive.google.com/file/d/1kz8zw9jtlvqincgCbemYBvrQwv8y7zAo/view?usp=drive_link" target="_blank" rel="noopener" class="nav-link">Resume</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
+                <span class="dark-mode-text">Dark Mode</span>
+                <span class="dark-mode-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="about-page-wrap" id="top">
+            <!-- Hero Layout -->
+            <div class="about-hero-grid">
+                <div class="about-hero-left">
+                    <img src="about-me-img/am-edit-yenpic1.png" alt="Arien Destriza Portrait">
+                </div>
+                <div class="about-hero-right">
+                    <h1 class="about-title">Hi, I'm Arien!</h1>
+                    <p class="about-text">
+                        I grew up in Bantayan Island and now exploring the magical world of tech as a BSIT student at Cebu Technological University - Main Campus.
+                    </p>
+                    <p class="about-text">
+                        My passion lies in turning everyday problems into simple, accessible, and visually engaging digital experiences.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Full-width Description -->
+            <p class="about-full-paragraph">
+                My design path began during my work immersion at Ocean Hive (now OH Digital PH) using Adobe XD. Since then, I've transitioned into Figma, spending most of my spare time flibbertigibbeting away on new digital concepts (iykyk).
+            </p>
+
+            <!-- Middle Gallery Grid -->
+            <div class="about-middle-grid">
+                <div class="about-img-wrap">
+                    <img src="about-me-img/am-edited-oceanhiveteam.png" alt="Ocean Hive Team">
+                    <div class="hover-caption">Immersion team with Sir Jo!</div>
+                </div>
+                <div class="about-img-wrap">
+                    <img src="about-me-img/am-edit-presentingOH1.png" alt="Presenting OH Workspace">
+                    <div class="hover-caption">Presenting early UI designs</div>
+                </div>
+                <div class="about-img-wrap">
+                    <img src="about-me-img/am-edit-UIscreens1.png" alt="BANALUX Mobile App Design">
+                    <div class="hover-caption">my poor design of BANSCIE App (Adobe XD)</div>
+                </div>
+            </div>
+
+            <!-- Fun Facts Section -->
+            <div class="fun-facts-section">
+                <h2 class="fun-facts-title">FUN FACTS</h2>
+                
+                <div class="about-facts-grid">
+                    <!-- Fact 1 -->
+                    <div class="about-fact-card">
+                        <div class="about-fact-img-wrap">
+                            <img src="about-me-img/am-edited-city-hall.png" alt="OJT Tester">
+                        </div>
+                        <p class="about-fact-desc">
+                            CSS NC II Certified &amp; City Hall OJT
+                        </p>
+                    </div>
+
+                    <!-- Fact 2 -->
+                    <div class="about-fact-card">
+                        <div class="about-fact-img-wrap">
+                            <img src="about-me-img/am-edited-gabiisakabilin.png" alt="Gabii sa Kabilin Volunteer">
+                        </div>
+                        <p class="about-fact-desc">
+                            Gabii sa Kabilin Event Volunteer
+                        </p>
+                    </div>
+
+                    <!-- Fact 3 -->
+                    <div class="about-fact-card">
+                        <div class="about-fact-img-wrap">
+                            <img src="about-me-img/am-edit-hike1.png" alt="Mountain Hike">
+                        </div>
+                        <p class="about-fact-desc">
+                            Just me on a real mountain hike
+                        </p>
+                    </div>
+
+                    <!-- Fact 4 -->
+                    <div class="about-fact-card">
+                        <div class="about-fact-img-wrap">
+                            <img src="about-me-img/am-edited-cookery (2).png" alt="Cookery NC II">
+                        </div>
+                        <p class="about-fact-desc">
+                            Cookery NC II Certified Chef &amp; Designer
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="footer">
+        <div class="footer-top-container">
+            <!-- Left Side: Icon + Arien Destriza -->
+            <div class="footer-brand-wrap">
+                <img src="img/yen-final-logo.png" alt="Logo" class="footer-asterisk-icon">
+                <span class="footer-brand-name">Arien Destriza</span>
+            </div>
+
+            <!-- Right Side: 2 Columns (Main & Contact) -->
+            <div class="footer-columns-wrap">
+                <!-- Col 1: Main -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Main</span>
+                    <div class="footer-nav-list">
+                        <a href="index.html#work" class="footer-nav-link">Work</a>
+                        <a href="about.html" class="footer-nav-link">About</a>
+                        <a href="explorations.html" class="footer-nav-link">Explorations</a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Contact -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Contact</span>
+                    <a href="mailto:yindestriza@gmail.com" class="footer-contact-link">yindestriza@gmail.com</a>
+                    
+                    <span class="footer-col-header" style="margin-top: 20px;">Phone</span>
+                    <span class="footer-phone-text">0908-772-4983</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giant Bottom Banner Typography -->
+        <div class="footer-giant-banner">
+            <span>Arien Destriza</span>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

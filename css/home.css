@@ -1,0 +1,522 @@
+/* ==========================================================================
+   PAGE STYLES: Home Landing Page (home.css)
+   Exact replica of Itti's Framer Portfolio (https://itti.framer.website/)
+   ========================================================================== 
+   
+   TABLE OF CONTENTS:
+   1. Intro / Header Section (White background, animated stars)
+   2. Work Section ("work" heading, 4 colored grid cards)
+   3. Play Section ("play" heading, black background, 3 dark cards)
+   4. Responsive Layout Adjustments
+   ========================================================================== */
+
+/* 1. INTRO / HERO SECTION (2-Column Arien Destriza Layout) */
+.intro-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 40px 80px;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.hero-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.hero-headline {
+    font-size: 46px;
+    line-height: 1.25;
+    color: var(--text-dark);
+    letter-spacing: -1px;
+    font-weight: 500;
+}
+
+.underline-name {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 3.5px;
+}
+
+.bold-crafts {
+    font-weight: 700;
+}
+
+.italic-exp {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+}
+
+.hero-sub-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.hero-bullet-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: -0.3px;
+}
+
+.bullet-emoji {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.hero-about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0px;
+    padding: 10px 22px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-decoration: none;
+    background: transparent;
+    width: fit-content;
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.hero-about-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.hero-about-btn .btn-arrow {
+    display: inline-block;
+    transition: transform var(--transition);
+}
+
+.hero-about-btn:hover .btn-arrow {
+    transform: translate(2px, -2px);
+}
+
+/* Dark Mode support for the button */
+body.dark-mode .hero-about-btn {
+    border-color: rgba(255, 255, 255, 0.25);
+    color: var(--text-light);
+}
+
+body.dark-mode .hero-about-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* Right Column: Portrait inside Ripped Paper & Floating Emojis */
+.hero-right-col {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.hero-photo-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-photo-wrap:hover {
+    transform: scale(1.02) translateY(-4px);
+}
+
+.hero-portrait-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.dark-avatar {
+    display: none;
+}
+
+body.dark-mode .light-avatar {
+    display: none;
+}
+
+body.dark-mode .dark-avatar {
+    display: block;
+}
+
+/* Floating Emojis around Portrait */
+.floating-emoji {
+    position: absolute;
+    font-size: 38px;
+    z-index: 3;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+    animation: float-emoji-anim 5s ease-in-out infinite alternate;
+}
+
+.emoji-palette {
+    top: -5%;
+    left: 45%;
+    transform: rotate(-12deg);
+    animation-delay: 0s;
+}
+
+.emoji-sparkles {
+    top: 15%;
+    right: -2%;
+    transform: rotate(15deg);
+    animation-delay: 1s;
+}
+
+.emoji-bulb {
+    top: 45%;
+    left: -2%;
+    transform: rotate(-20deg);
+    animation-delay: 2s;
+}
+
+.emoji-laptop {
+    bottom: 12%;
+    left: 2%;
+    transform: rotate(8deg);
+    animation-delay: 1.5s;
+}
+
+.emoji-thinking {
+    bottom: 30%;
+    right: -2%;
+    transform: rotate(18deg);
+    animation-delay: 2.5s;
+}
+
+@keyframes float-emoji-anim {
+    0% { transform: translateY(0px) scale(1) rotate(0deg); }
+    100% { transform: translateY(-12px) scale(1.08) rotate(10deg); }
+}
+
+/* 2. WORK SECTION */
+.work-section {
+    background-color: var(--bg-light);
+    padding: 60px 40px 120px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.section-title-lowercase {
+    font-family: var(--font-serif);
+    font-size: 64px;
+    font-weight: 500;
+    letter-spacing: -2.1px;
+    margin-bottom: 50px;
+    line-height: 1;
+}
+
+.section-title-lowercase.light {
+    color: var(--text-dark);
+}
+
+.section-title-lowercase.dark {
+    color: var(--text-light);
+}
+
+.play-section .section-title-lowercase {
+    color: var(--play-title);
+    transition: color 0.3s ease;
+}
+
+.works-grid-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.work-card-exact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    cursor: pointer;
+    group: work-card;
+}
+
+.work-card-img-box {
+    width: 100%;
+    height: 480px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.work-card-exact:hover .work-card-img-box {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Exact card background colors from Itti's portfolio */
+.bg-lists { background-color: var(--card-bg-lists); }
+.bg-enclave { background: var(--card-bg-enclave); }
+.bg-ua { background-color: var(--card-bg-ua); }
+.bg-spcu { background-color: var(--card-bg-spcu); }
+.bg-recipely { background-color: var(--card-bg-recipely); }
+.bg-citizen { background-color: var(--card-bg-citizen); }
+
+/* Mockup UI container inside cards */
+.ui-illustration {
+    width: 82%;
+    height: 75%;
+    border-radius: 12px;
+    background: #FFFFFF;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-card-exact:hover .ui-illustration {
+    transform: scale(1.03);
+}
+
+.ui-header {
+    height: 36px;
+    background: #F5F5F7;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 6px;
+}
+
+.ui-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #DDD;
+}
+
+.ui-body {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.work-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.work-card-title-exact {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+
+.work-card-sub-exact {
+    font-size: 16px;
+    color: var(--text-subtle);
+    font-weight: 400;
+}
+
+/* 3. PLAY SECTION (Black background transition) */
+.play-section-wrapper {
+    background-color: var(--play-bg);
+    color: var(--play-card-text);
+    padding: 100px 40px 140px;
+    width: 100%;
+    border-top: 1px solid var(--footer-border);
+}
+
+.play-section {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.play-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.play-header-row .section-title-lowercase {
+    margin-bottom: 0;
+}
+
+.view-all-link {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--play-card-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.view-all-link:hover {
+    opacity: 0.8;
+}
+
+.play-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.play-card-exact {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.play-card-img-box {
+    width: 100%;
+    height: 380px;
+    background-color: var(--play-card-bg);
+    border: 1px solid var(--play-card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.play-card-exact:hover .play-card-img-box {
+    border-color: rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .play-card-exact:hover .play-card-img-box {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Base play-img properties */
+.play-img {
+    width: 85%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.play-card-exact:hover .play-img {
+    transform: scale(1.02);
+}
+
+.play-card-info-exact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.play-card-title-exact {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--play-card-text);
+    letter-spacing: -0.4px;
+    transition: color 0.3s ease;
+}
+
+.play-card-sub-exact {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-muted-dark);
+    transition: color 0.3s ease;
+}
+
+/* 4. RESPONSIVE LAYOUT ADJUSTMENTS */
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+    }
+    .hero-left-col {
+        align-items: center;
+    }
+    .hero-sub-bullets {
+        align-items: center;
+    }
+    .works-grid-2col {
+        grid-template-columns: 1fr;
+    }
+    .play-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .work-card-img-box {
+        height: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-headline {
+        font-size: 36px;
+    }
+    .hero-bullet-item {
+        font-size: 16px;
+    }
+    .floating-emoji {
+        font-size: 30px;
+    }
+    .section-title-lowercase {
+        font-size: 48px;
+        margin-bottom: 32px;
+    }
+    .play-grid-3col {
+        grid-template-columns: 1fr;
+    }
+    .work-card-img-box {
+        height: 300px;
+    }
+    .play-card-img-box {
+        height: 280px;
+    }
+    .work-section, .play-section-wrapper {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

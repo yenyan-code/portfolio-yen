@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Connect Case Study | Arien Destriza</title>
+    <meta name="description" content="An in-depth UI/UX case study on Citizen Connect, a modernized civic engagement and municipal portal by Arien Destriza.">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/home.css">
+    
+    <!-- Lenis Smooth Scrolling CDN -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: auto !important;
+        }
+
+        /* Modern Clean Layout Overrides */
+        body {
+            background-color: #FAFAFA;
+            color: #111;
+            font-family: "Inter", sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .cs-container {
+            max-width: 1600px;
+            width: 94%;
+            margin: 0 auto;
+            padding: 100px 0 60px 0;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* --- SIDEBAR --- */
+        .cs-sidebar {
+            position: sticky;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .cs-back-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .cs-back-link:hover {
+            color: #666;
+        }
+
+        .cs-toc-box {
+            background: #F2F2F2;
+            border-radius: 12px;
+            padding: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cs-toc-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .cs-toc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cs-toc-link {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .cs-toc-link:hover {
+            background: rgba(0,0,0,0.05);
+            color: #111;
+        }
+
+        .cs-toc-link.active {
+            background: #E5EDFF;
+            color: #1E40AF;
+            font-weight: 600;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .cs-main {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            min-width: 0; /* prevents flex blowout */
+        }
+
+        .cs-hero-img-box {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+        }
+
+        .cs-hero-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Pills */
+        .cs-pills-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .cs-pill {
+            background: #E5E5E5;
+            color: #111;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .cs-pill span {
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        /* Headers & Text */
+        .cs-title {
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-top: -24px;
+            margin-bottom: 2px;
+            color: #111;
+        }
+
+        .cs-intro {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            margin-top: -24px;
+            max-width: 700px;
+            margin-bottom: 8px;
+        }
+
+        /* Specs Grid */
+        .cs-specs-box {
+            background: #EBF2FF;
+            border-radius: 20px;
+            padding: 16px 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: -16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cs-spec-col {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cs-spec-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-spec-val {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* Content Sections */
+        .cs-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 0px;
+        }
+
+        .cs-section-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-h2 {
+            font-size: 32px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #111;
+            margin: 0;
+        }
+
+        .cs-p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            max-width: 800px;
+        }
+
+        /* Callout Box */
+        .cs-callout {
+            background: #F4F7FF;
+            border-left: 4px solid #2563EB;
+            padding: 24px 32px;
+            border-radius: 4px 16px 16px 4px;
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-style: italic;
+            line-height: 1.5;
+            color: #1E40AF;
+            max-width: 800px;
+            margin-top: 8px;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Context Section Custom Elements */
+        .cs-context-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 16px;
+            width: 100%;
+        }
+
+        .cs-context-card {
+            background: #FFFFFF;
+            border: 1.5px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 32px 28px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cs-context-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+        }
+
+        .cs-context-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .cs-context-card-text {
+            font-size: 14.5px;
+            line-height: 1.5;
+            color: #444;
+            margin: 0;
+        }
+
+        .cs-problem-statement {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-left: 12px solid #E11D48; /* Thick red left bar */
+            padding: 28px 32px;
+            border-radius: 4px 16px 16px 4px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #111;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+            margin-top: 12px;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .cs-context-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Information Architecture Custom Elements */
+        .cs-ia-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 24px;
+            width: 100%;
+        }
+
+        .cs-ia-col {
+            background: #EBF2FF;
+            border-radius: 24px;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        .cs-ia-col-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            text-align: center;
+            line-height: 1.3;
+            margin: 0;
+            margin-bottom: 12px;
+        }
+
+        .cs-ia-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            align-items: center;
+            box-sizing: border-box;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cs-ia-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .cs-ia-card-img-wrap {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cs-ia-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cs-ia-card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cs-ia-card-title {
+            font-size: 16.5px;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .cs-ia-card-desc {
+            font-size: 13.5px;
+            line-height: 1.45;
+            color: #444;
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .cs-ia-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cs-ia-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+        }
+
+        /* UX Strategy Custom Elements */
+        .cs-ux-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+            width: 100%;
+        }
+
+        .cs-ux-card {
+            background: #EBF2FF;
+            border: 1.5px solid rgba(37, 99, 235, 0.08);
+            border-radius: 20px;
+            padding: 32px 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cs-ux-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.05);
+        }
+
+        .cs-ux-card-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .cs-ux-label-friction {
+            font-size: 11px;
+            font-weight: 700;
+            color: #DC2626; /* Red label */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: -6px;
+        }
+
+        .cs-ux-label-solution {
+            font-size: 11px;
+            font-weight: 700;
+            color: #2563EB; /* Blue label */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: -6px;
+        }
+
+        .cs-ux-divider {
+            border: 0;
+            height: 1.5px;
+            background: rgba(37, 99, 235, 0.1);
+            margin: 4px 0;
+        }
+
+        .cs-ux-card-text {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #333;
+            margin: 0;
+        }
+
+        .cs-ux-text-friction {
+            color: #DC2626;
+        }
+
+        @media (max-width: 900px) {
+            .cs-ux-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Trust & Security Custom Elements */
+        .cs-trust-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+            width: 100%;
+        }
+
+        .cs-trust-card {
+            background: #FFFFFF;
+            border: 1.5px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 32px 28px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cs-trust-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+        }
+
+        .cs-trust-card-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .cs-trust-text-threat {
+            color: #EA580C; /* Orange/amber in light mode */
+            font-size: 14.5px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .cs-trust-divider {
+            border: 0;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+            margin: 4px 0;
+        }
+
+        .cs-trust-label-solution {
+            font-size: 11px;
+            font-weight: 700;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: -6px;
+        }
+
+        .cs-trust-card-text {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #555;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .cs-trust-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Design System Styles */
+        .cs-ds-colors-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 32px;
+            margin-top: 16px;
+            width: 100%;
+        }
+
+        .cs-ds-swatch-card {
+            background: #FFFFFF;
+            border: 1.5px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 32px 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cs-ds-swatch-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cs-ds-swatch-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            border: 1px solid rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+
+        .cs-ds-swatch-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cs-ds-swatch-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .cs-ds-swatch-hex {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .cs-ds-swatch-graphic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%;
+        }
+
+        .cs-ds-swatch-graphic-box {
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .cs-ds-swatch-graphic-img {
+            width: 50%;
+            height: 50%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .cs-ds-typo-card {
+            background: #FFFFFF;
+            border: 1.5px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 36px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 16px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cs-ds-typo-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cs-ds-typo-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #2563EB; /* Blue guide color */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-ds-typo-headline {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 32px;
+            color: #111;
+            margin: 0;
+        }
+
+        .cs-ds-typo-subhead {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 18px;
+            color: #111;
+            margin: 0;
+        }
+
+        .cs-ds-typo-body {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* UI Component Library Custom Elements */
+        .cs-ds-library-box {
+            background: #FAFAFA;
+            border: 1.5px solid rgba(0,0,0,0.06);
+            border-radius: 24px;
+            padding: 32px;
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+
+        .cs-ds-lib-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 16px;
+            padding: 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cs-ds-lib-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .cs-ds-lib-row-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .cs-lib-profile-wrap {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cs-lib-profile-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #F3F4F6;
+            border: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #4B5563;
+            flex-shrink: 0;
+        }
+
+        .cs-lib-profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cs-lib-profile-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+        }
+
+        .cs-lib-match-badge {
+            background: #EE990A;
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .cs-lib-progress-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            min-height: 80px;
+        }
+
+        .cs-lib-progress-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: conic-gradient(#EE990A 234deg, #E5E7EB 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .cs-lib-progress-circle::after {
+            content: '';
+            position: absolute;
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: #FFFFFF;
+        }
+
+        .cs-lib-progress-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cs-lib-progress-val {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111;
+            line-height: 1.1;
+        }
+
+        .cs-lib-progress-label {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+
+        .cs-lib-badges-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .cs-lib-badge {
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .cs-lib-badge.fulfilled {
+            background: #107710;
+            color: #FFFFFF;
+        }
+
+        .cs-lib-badge.in-progress {
+            background: #EE990A;
+            color: #FFFFFF;
+        }
+
+        .cs-lib-badge.broken {
+            background: #CB3236;
+            color: #FFFFFF;
+        }
+
+        .cs-lib-badge.outline {
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.15);
+            color: #555;
+        }
+
+        .cs-lib-nav-wrap {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .cs-lib-search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .cs-lib-search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9CA3AF;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cs-lib-search-input {
+            width: 100%;
+            height: 44px;
+            padding: 0 16px 0 42px;
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.15);
+            font-size: 14px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            color: #111;
+        }
+
+        .cs-lib-filter-btn {
+            height: 44px;
+            padding: 0 20px;
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.15);
+            background: #FFFFFF;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .cs-lib-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+        }
+
+        .cs-lib-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 500px;
+        }
+
+        .cs-lib-table th {
+            background: #F3F4F6;
+            padding: 12px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #4B5563;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cs-lib-table td {
+            padding: 16px;
+            font-size: 14px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            background: #FFFFFF;
+            color: #333;
+        }
+
+        .cs-lib-table-badge {
+            background: #EE990A;
+            color: #FFFFFF;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        @media (max-width: 640px) {
+            .cs-ds-lib-row-top {
+                grid-template-columns: 1fr;
+            }
+            .cs-lib-nav-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cs-ds-colors-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        /* Reflection Cards Grid */
+        .cs-reflection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .cs-reflection-card {
+            background: #F4F7FF;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-sizing: border-box;
+            border: 1px solid rgba(37, 99, 235, 0.05);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cs-ref-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111;
+            margin: 0;
+        }
+
+        .cs-ref-card-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+            margin: 0;
+        }
+
+        .cs-ref-subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            color: #111;
+            margin: -8px 0 0 0;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        /* High-Fidelity & Reflection Custom Elements */
+        .cs-hifi-container {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            margin-top: 32px;
+            width: 100%;
+        }
+
+        .cs-hifi-row {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 36px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .cs-hifi-video-card {
+            background: #D1D5DB; /* Grey border frame simulating hardware screen border */
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .cs-hifi-video-card:hover {
+            transform: scale(1.01);
+        }
+
+        .cs-hifi-video-screen {
+            border-radius: 12px;
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000000;
+        }
+
+        .cs-hifi-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cs-hifi-pill-header {
+            background: #D5E3FC; /* Light secondary blue background */
+            border: 1.5px solid #60A5FA;
+            color: #1E3A8A;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            width: fit-content;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .cs-hifi-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
+
+        @media (max-width: 900px) {
+            .cs-hifi-row {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        /* Next Case Study Navigation styling */
+        .case-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 56px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 40px;
+        }
+
+        .case-nav-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .case-nav-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .case-nav-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           DARK MODE STYLES
+           ========================================================================== */
+        body.dark-mode {
+            background-color: #0A0A0C;
+            color: #E5E7EB;
+        }
+
+        body.dark-mode .cs-back-link {
+            color: #E5E7EB;
+        }
+
+        body.dark-mode .cs-back-link:hover {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-toc-box {
+            background: #16161A;
+        }
+
+        body.dark-mode .cs-toc-title {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-toc-link {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-toc-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-toc-link.active {
+            background: #2563EB;
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-pill {
+            background: #27272A;
+            color: #E5E7EB;
+        }
+
+        body.dark-mode .cs-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-intro {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-specs-box {
+            background: #111C30;
+        }
+
+        body.dark-mode .cs-specs-box .cs-spec-label {
+            color: #E5E7EB;
+        }
+
+        body.dark-mode .cs-specs-box .cs-spec-val {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-section-label {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-h2 {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-p {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-callout {
+            border-left-color: #3B82F6;
+            color: #93C5FD;
+            background: #111C30;
+        }
+
+        body.dark-mode .cs-context-card {
+            background: #111C30;
+            border-color: rgba(37, 99, 235, 0.1);
+        }
+
+        body.dark-mode .cs-context-card-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-context-card-text {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-problem-statement {
+            background: #16161A;
+            border-color: rgba(255, 255, 255, 0.05);
+            border-left-color: #EF4444;
+            color: #E5E7EB;
+        }
+
+        body.dark-mode .cs-ia-col {
+            background: #111C30;
+        }
+
+        body.dark-mode .cs-ia-col-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ia-card {
+            background: #16161A;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .cs-ia-card-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ia-card-desc {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-ux-card {
+            background: #111C30;
+            border-color: rgba(37, 99, 235, 0.15);
+        }
+
+        body.dark-mode .cs-ux-card-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ux-label-friction {
+            color: #F87171;
+        }
+
+        body.dark-mode .cs-ux-label-solution {
+            color: #60A5FA;
+        }
+
+        body.dark-mode .cs-ux-divider {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        body.dark-mode .cs-ux-card-text {
+            color: #D1D5DB;
+        }
+
+        body.dark-mode .cs-ux-text-friction {
+            color: #F87171;
+        }
+
+        body.dark-mode .cs-trust-card {
+            background: #111C30;
+            border-color: rgba(37, 99, 235, 0.15);
+        }
+
+        body.dark-mode .cs-trust-card-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-trust-text-threat {
+            color: #FBBF24; /* Lighter amber */
+        }
+
+        body.dark-mode .cs-trust-divider {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        body.dark-mode .cs-trust-label-solution {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-trust-card-text {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-ds-swatch-card {
+            background: #111C30;
+            border-color: rgba(37, 99, 235, 0.1);
+        }
+
+        body.dark-mode .cs-ds-swatch-name {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ds-swatch-hex {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-ds-swatch-graphic-box {
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .cs-ds-typo-card {
+            background: #111C30;
+            border-color: rgba(37, 99, 235, 0.1);
+        }
+
+        body.dark-mode .cs-ds-typo-label {
+            color: #60A5FA;
+        }
+
+        body.dark-mode .cs-ds-typo-headline {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ds-typo-subhead {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ds-typo-body {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-ds-library-box {
+            background: #111C30;
+            border-color: rgba(37, 99, 235, 0.1);
+        }
+
+        body.dark-mode .cs-ds-lib-card {
+            background: #16161A;
+            border-color: rgba(255,255,255,0.05);
+        }
+
+        body.dark-mode .cs-ds-lib-label {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-lib-profile-avatar {
+            background: #2D3748;
+            border-color: rgba(255,255,255,0.08);
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-lib-profile-name {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-lib-progress-circle {
+            background: conic-gradient(#EE990A 234deg, #2D3748 0deg);
+        }
+
+        body.dark-mode .cs-lib-progress-circle::after {
+            background: #16161A;
+        }
+
+        body.dark-mode .cs-lib-progress-val {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-lib-progress-label {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-lib-badge.outline {
+            border-color: rgba(255,255,255,0.15);
+            color: #D1D5DB;
+        }
+
+        body.dark-mode .cs-lib-search-input {
+            background: #1F2937;
+            border-color: rgba(255,255,255,0.15);
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-lib-filter-btn {
+            background: #1F2937;
+            border-color: rgba(255,255,255,0.15);
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-lib-table-wrap {
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        body.dark-mode .cs-lib-table th {
+            background: #1F2937;
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-lib-table td {
+            background: #16161A;
+            border-top-color: rgba(255,255,255,0.06);
+            color: #D1D5DB;
+        }
+
+        body.dark-mode .cs-lib-table tr:hover td {
+            background: #1E293B;
+        }
+
+        body.dark-mode .cs-reflection-card {
+            background: #111C30;
+            border-color: rgba(37, 99, 235, 0.1);
+        }
+
+        body.dark-mode .cs-ref-card-title {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-ref-card-text {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .cs-ref-subtitle {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-hifi-video-card {
+            background: #1F2937; /* Darker border frame */
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body.dark-mode .cs-hifi-pill-header {
+            background: #1E3A8A;
+            border-color: #3B82F6;
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .cs-hifi-desc {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .case-nav-btn {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .case-nav-label {
+            color: #9CA3AF;
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 1024px) {
+            .cs-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 80px;
+            }
+
+            .cs-sidebar {
+                position: static;
+                top: auto;
+            }
+
+            .cs-toc-box {
+                display: none; /* Hide TOC on mobile/tablet */
+            }
+
+            .cs-specs-box {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cs-specs-box {
+                grid-template-columns: 1fr;
+            }
+
+            .wireframe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cs-reflection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-navigation {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .case-nav-btn {
+                align-items: flex-start !important;
+                text-align: left !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Prevent dark mode flash of unstyled content -->
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- ==========================================================================
+         FLOATING TOP NAVIGATION BAR (Exact replica from index.html)
+         ========================================================================== -->
+    <header class="header-nav">
+        <a href="index.html" class="header-logo">
+            <img src="img/yen-final-logo.png" alt="Logo" class="logo-icon">
+            <span>Arien Destriza</span>
+        </a>
+        <div class="navbar-pill-wrap">
+            <nav class="navbar-pill">
+                <a href="index.html#work" class="nav-link active">Work</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="explorations.html" class="nav-link">Explorations</a>
+                <a href="https://drive.google.com/file/d/1kz8zw9jtlvqincgCbemYBvrQwv8y7zAo/view?usp=drive_link" target="_blank" rel="noopener" class="nav-link">Resume</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
+                <span class="dark-mode-text">Dark Mode</span>
+                <span class="dark-mode-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main class="cs-container">
+        
+        <!-- SIDEBAR (Left Column) -->
+        <aside class="cs-sidebar">
+            <a href="index.html#work" class="cs-back-link">
+                ← BACK TO WORK
+            </a>
+
+            <div class="cs-toc-box">
+                <div class="cs-toc-title">Table of Contents</div>
+                <div class="cs-toc-list">
+                    <a href="#context" class="cs-toc-link active">1. Context & Problem</a>
+                    <a href="#architecture" class="cs-toc-link">2. Information Architecture</a>
+                    <a href="#ux-strategy" class="cs-toc-link">3. UX Strategy & Decisions</a>
+                    <a href="#trust-security" class="cs-toc-link">4. Trust & Security</a>
+                    <a href="#design-system" class="cs-toc-link">5. Design System</a>
+                    <a href="#reflection" class="cs-toc-link">6. HiFi UI & Reflection</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT (Right Column) -->
+        <article class="cs-main">
+            
+            <!-- Hero Image -->
+            <div class="cs-hero-img-box">
+                <img src="works-citizen-connect/citizen-connect-bg.png" alt="Citizen Connect Mockups">
+            </div>
+
+            <!-- Tags -->
+            <div class="cs-pills-row">
+                <div class="cs-pill">TYPE <span>Ideathon Redesign</span></div>
+                <div class="cs-pill">PLATFORM <span>Web App</span></div>
+                <div class="cs-pill">AWARD <span>2nd Runner Up</span></div>
+            </div>
+
+            <!-- Title & Intro -->
+            <h1 class="cs-title">Citizen Connect — Inform. Vote. Track</h1>
+            <p class="cs-intro">
+                Bridging the gap between voters, candidates, and elected officials through open data and political accountability dashboards.
+            </p>
+
+            <!-- Specs Grid -->
+            <div class="cs-specs-box">
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">ROLE</div>
+                    <div class="cs-spec-val">
+                        UI/UX Designer<br>
+                        Visual Designer
+                    </div>
+                </div>
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">TIMELINE</div>
+                    <div class="cs-spec-val">
+                        1 Day (Ideathon) +<br>Self-paced (Redesign)
+                    </div>
+                </div>
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">TOOLS</div>
+                    <div class="cs-spec-val">
+                        Figma<br>
+                        Notion<br>
+                        Affinity<br>
+                        Canva
+                    </div>
+                </div>
+                <div class="cs-spec-col">
+                    <div class="cs-spec-label">SKILLS</div>
+                    <div class="cs-spec-val">
+                        Information Architecture<br>
+                        Data Visualization<br>
+                        Interaction Design
+                    </div>
+                </div>
+            </div>
+
+            <!-- Context Section -->
+            <section class="cs-section" id="context">
+                <div class="cs-section-label">CONTEXT & PROBLEM</div>
+                <h2 class="cs-h2">Bridging the gap between public trust and political accountability.</h2>
+                <p class="cs-p">
+                    Democracy relies on informed citizens, yet our current civic systems suffer from a massive transparency gap. Citizen Connect was created to solve two distinct, real-world problems that happen before and after election cycles:
+                </p>
+
+                <!-- Pre & Post Election Grid -->
+                <div class="cs-context-grid">
+                    <div class="cs-context-card">
+                        <h3 class="cs-context-card-title">Pre-Election<br>(Empowered Voting)</h3>
+                        <p class="cs-context-card-text">
+                            During election cycles, voters are inundated with noise, campaign rallies, and unverified social media claims. Finding objective information about a candidate's background, platform, and actual track record is a frustrating, fragmented process.
+                        </p>
+                    </div>
+                    <div class="cs-context-card">
+                        <h3 class="cs-context-card-title">Post-Election<br>(Accountability & Transparency)</h3>
+                        <p class="cs-context-card-text">
+                            Once election day passes, elected officials slip behind closed doors. Voters lose all visibility into whether campaign promises are actually being fulfilled or if local city budgets are being managed responsibly.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Problem Statement Sub-Block -->
+                <div class="cs-section-label" style="margin-top: 24px; margin-bottom: -4px;">PROBLEM STATEMENT</div>
+                <div class="cs-problem-statement">
+                    <strong>How might we</strong> empower voters with objective, comparison-ready candidate data before they vote, and keep government progress transparent and accountable long after election day?
+                </div>
+            </section>
+
+            <!-- Information Architecture Section -->
+            <section class="cs-section" id="architecture">
+                <div class="cs-section-label">INFORMATION ARCHITECTURE</div>
+                <h2 class="cs-h2">One platform, two distinct operational modes.</h2>
+                <p class="cs-p">
+                    To address both the pre-election voting phase and the post-election accountability phase, the platform's information architecture is divided into two core modes. Users can seamlessly switch modes depending on the current political cycle.
+                </p>
+                
+                <div class="cs-ia-grid">
+                    <!-- Left Column: Pre-Election -->
+                    <div class="cs-ia-col">
+                        <h3 class="cs-ia-col-title">Pre-Election Mode:<br>Empowered Voting</h3>
+                        
+                        <!-- Card 1 -->
+                        <div class="cs-ia-card">
+                            <div class="cs-ia-card-img-wrap">
+                                <img src="works-citizen-connect/c-c-1.png" alt="Candidate Profiles icon" class="cs-ia-card-img">
+                            </div>
+                            <div class="cs-ia-card-info">
+                                <h4 class="cs-ia-card-title">Candidate Profiles</h4>
+                                <p class="cs-ia-card-desc">Objective platforms, voting records, and education history.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="cs-ia-card">
+                            <div class="cs-ia-card-img-wrap">
+                                <img src="works-citizen-connect/c-c-2.png" alt="Policy Stance Matrix icon" class="cs-ia-card-img">
+                            </div>
+                            <div class="cs-ia-card-info">
+                                <h4 class="cs-ia-card-title">Policy Stance Matrix</h4>
+                                <p class="cs-ia-card-desc">Stances on key local issues like transit, education, and resilience.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="cs-ia-card">
+                            <div class="cs-ia-card-img-wrap">
+                                <img src="works-citizen-connect/c-c-3.png" alt="Priority Matcher icon" class="cs-ia-card-img">
+                            </div>
+                            <div class="cs-ia-card-info">
+                                <h4 class="cs-ia-card-title">Priority Matcher</h4>
+                                <p class="cs-ia-card-desc">Rank the local issues you care about most, and instantly see which candidates prioritize those same developments in their campaign platforms</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Governance Mode -->
+                    <div class="cs-ia-col">
+                        <h3 class="cs-ia-col-title">Governance Mode:<br>Post-Election Accountability</h3>
+                        
+                        <!-- Card 1 -->
+                        <div class="cs-ia-card">
+                            <div class="cs-ia-card-img-wrap">
+                                <img src="works-citizen-connect/c-c-4.png" alt="Promise Tracker Dashboard icon" class="cs-ia-card-img">
+                            </div>
+                            <div class="cs-ia-card-info">
+                                <h4 class="cs-ia-card-title">Promise Tracker Dashboard</h4>
+                                <p class="cs-ia-card-desc">Visual status meters tracking campaign promises with transparent status tags.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="cs-ia-card">
+                            <div class="cs-ia-card-img-wrap">
+                                <img src="works-citizen-connect/c-c-5.png" alt="Legislative & Ordinance Log icon" class="cs-ia-card-img">
+                            </div>
+                            <div class="cs-ia-card-info">
+                                <h4 class="cs-ia-card-title">Legislative & Ordinance Log</h4>
+                                <p class="cs-ia-card-desc">A history of sponsored laws, authored resolutions, and official votes.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="cs-ia-card">
+                            <div class="cs-ia-card-img-wrap">
+                                <img src="works-citizen-connect/c-c-6.png" alt="Project & Budget Map icon" class="cs-ia-card-img">
+                            </div>
+                            <div class="cs-ia-card-info">
+                                <h4 class="cs-ia-card-title">Project & Budget Map</h4>
+                                <p class="cs-ia-card-desc">An interactive city map showing ongoing infrastructure project updates, contractors, and expenditures.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="cs-ia-card">
+                            <div class="cs-ia-card-img-wrap">
+                                <img src="works-citizen-connect/c-c-7.png" alt="Community Project Referendums icon" class="cs-ia-card-img">
+                            </div>
+                            <div class="cs-ia-card-info">
+                                <h4 class="cs-ia-card-title">Community Project Referendums</h4>
+                                <p class="cs-ia-card-desc">A direct voting tool where citizens cast an "Agree" or "Disagree" vote on newly proposed city projects, showing officials exactly where the community stands on new proposals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UX Strategy Section -->
+            <section class="cs-section" id="ux-strategy">
+                <div class="cs-section-label">UX STRATEGY & DECISIONS</div>
+                <h2 class="cs-h2">Designing a secure, non-partisan platform for public trust.</h2>
+                <p class="cs-p">
+                    In Civic Tech, credibility is everything. If a platform feels biased, has unverified data, or is easily manipulated by bots, public trust is instantly lost. Our UX strategy balances user simplicity with rigorous trust and security countermeasures:
+                </p>
+
+                <h3 class="cs-h2" style="font-size: 24px; margin-top: 24px; margin-bottom: -8px;">UX Strategy: Solving Voter Friction</h3>
+
+                <div class="cs-ux-grid">
+                    <!-- Card 1 -->
+                    <div class="cs-ux-card">
+                        <h4 class="cs-ux-card-title">Comparing Vague Platforms</h4>
+                        <div class="cs-ux-label-friction">Friction</div>
+                        <p class="cs-ux-card-text cs-ux-text-friction">
+                            Voters find candidate stances vague, wordy, and extremely difficult to compare side-by-side.
+                        </p>
+                        <hr class="cs-ux-divider">
+                        <div class="cs-ux-label-solution">UI Solution: Standardized Policy Matrix</div>
+                        <p class="cs-ux-card-text">
+                            We enforce identical stance categories (<span style="color: #10B981; font-weight: 600;">Agree</span>/<span style="color: #EF4444; font-weight: 600;">Disagree</span>) and display them in a clean comparison table, cutting out empty campaign jargon.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="cs-ux-card">
+                        <h4 class="cs-ux-card-title">The Post-Election Memory Gap</h4>
+                        <div class="cs-ux-label-friction">Friction</div>
+                        <p class="cs-ux-card-text cs-ux-text-friction">
+                            Once election day passes, citizens completely lose track of what was promised during the campaign.
+                        </p>
+                        <hr class="cs-ux-divider">
+                        <div class="cs-ux-label-solution">UI Solution: Evidence-Backed Promise Tracker</div>
+                        <p class="cs-ux-card-text">
+                            A visual dashboard with clear status badges (<span style="color: #10B981; font-weight: 600;">Fulfilled</span>, <span style="color: #D97706; font-weight: 600;">In Progress</span>, <span style="color: #EF4444; font-weight: 600;">Broken</span>) linked directly to official municipal records.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="cs-ux-card">
+                        <h4 class="cs-ux-card-title">Complex Budget Data</h4>
+                        <div class="cs-ux-label-friction">Friction</div>
+                        <p class="cs-ux-card-text cs-ux-text-friction">
+                            Raw government expenditure spreadsheets are too complex and boring for the average citizen to understand.
+                        </p>
+                        <hr class="cs-ux-divider">
+                        <div class="cs-ux-label-solution">UI Solution: Interactive Public Project & Budget Map</div>
+                        <p class="cs-ux-card-text">
+                            Translating dry spreadsheet numbers into localized map pins showing progress percentages and photos of active construction.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust & Security Section -->
+            <section class="cs-section" id="trust-security">
+                <div class="cs-section-label">TRUST & SECURITY</div>
+                <h2 class="cs-h2">Building a bulletproof platform for political accountability.</h2>
+                <p class="cs-p">
+                    When dealing with elections and government expenditure, the stakes are incredibly high. A single false achievement, bot-ridden poll, or accusation of bias can destroy the platform's credibility overnight. To protect the integrity of Citizen Connect, we designed active security countermeasures directly into the user interface:
+                </p>
+
+                <div class="cs-trust-grid">
+                    <!-- Card 1 -->
+                    <div class="cs-trust-card">
+                        <h4 class="cs-trust-card-title">Threat: Falsified Achievements</h4>
+                        <p class="cs-trust-text-threat">
+                            Candidates or partisan users submitting fake accomplishments or scrubbing past controversies.
+                        </p>
+                        <hr class="cs-trust-divider">
+                        <div class="cs-cs-trust-label-wrap">
+                            <div class="cs-trust-label-solution">UI Solution: Source Attribution Badges</div>
+                        </div>
+                        <p class="cs-trust-card-text">
+                            Every platform stance or completed promise card displays a mandatory 'Citation Link' badge pointing directly to primary source documents.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="cs-trust-card">
+                        <h4 class="cs-trust-card-title">Threat: Partisan Bot Spamming</h4>
+                        <p class="cs-trust-text-threat">
+                            Bot networks or paid accounts spamming ratings, upvoting biased questions, or skewing referendums.
+                        </p>
+                        <hr class="cs-trust-divider">
+                        <div class="cs-cs-trust-label-wrap">
+                            <div class="cs-trust-label-solution">UI Solution: Verified Voter Badges</div>
+                        </div>
+                        <p class="cs-trust-card-text">
+                            Users must complete a one-time ID/OTP verification to earn a 'Verified Voter' badge, which is required to participate in project polls or referendum voting.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="cs-trust-card">
+                        <h4 class="cs-trust-card-title">Threat: Accusations of Platform Bias</h4>
+                        <p class="cs-trust-text-threat">
+                            Accusations that the platform favors one candidate by placing them at the top of lists.
+                        </p>
+                        <hr class="cs-trust-divider">
+                        <div class="cs-cs-trust-label-wrap">
+                            <div class="cs-trust-label-solution">UI Solution: Randomized Listing Algorithm</div>
+                        </div>
+                        <p class="cs-trust-card-text">
+                            Candidate lists shuffle order on every page refresh to guarantee equal visual priority and exposure.
+                        </p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="cs-trust-card">
+                        <h4 class="cs-trust-card-title">Threat: Fake Project Progress Reports</h4>
+                        <p class="cs-trust-text-threat">
+                            Contractors or city officials reporting a project is 'Completed' when it's delayed or abandoned.
+                        </p>
+                        <hr class="cs-trust-divider">
+                        <div class="cs-cs-trust-label-wrap">
+                            <div class="cs-trust-label-solution">UI Solution: Photo-Verification Timeline</div>
+                        </div>
+                        <p class="cs-trust-card-text">
+                            Project status changes on the map require timestamped upload verification (e.g., site photos and budget receipt links) before the status can change to 'Completed'.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design System Section -->
+            <section class="cs-section" id="design-system">
+                <div class="cs-section-label">DESIGN SYSTEM</div>
+                <h2 class="cs-h2">A component library built for open-data transparency.</h2>
+                <p class="cs-p">
+                    Designing for public trust requires clarity above all else. We built a robust component library focused on high legibility, clean data visualization, and instant status color-coding.
+                </p>
+
+                <h3 class="cs-h2" style="font-size: 24px; margin-top: 24px; margin-bottom: -4px;">Color Palette</h3>
+                
+                <div class="cs-ds-colors-grid">
+                    <!-- Left: Swatch details list card -->
+                    <div class="cs-ds-swatch-card">
+                        <!-- Primary -->
+                        <div class="cs-ds-swatch-item">
+                            <div class="cs-ds-swatch-box" style="background: #1B3052;"></div>
+                            <div class="cs-ds-swatch-info">
+                                <span class="cs-ds-swatch-name">Primary</span>
+                                <span class="cs-ds-swatch-hex">#1B3052</span>
+                            </div>
+                        </div>
+
+                        <!-- Secondary -->
+                        <div class="cs-ds-swatch-item">
+                            <div class="cs-ds-swatch-box" style="background: #D5E3FC;"></div>
+                            <div class="cs-ds-swatch-info">
+                                <span class="cs-ds-swatch-name">Secondary</span>
+                                <span class="cs-ds-swatch-hex">#D5E3FC</span>
+                            </div>
+                        </div>
+
+                        <!-- Fulfilled -->
+                        <div class="cs-ds-swatch-item">
+                            <div class="cs-ds-swatch-box" style="background: #107710;"></div>
+                            <div class="cs-ds-swatch-info">
+                                <span class="cs-ds-swatch-name">Fulfilled / Match</span>
+                                <span class="cs-ds-swatch-hex">#107710</span>
+                            </div>
+                        </div>
+
+                        <!-- In Progress -->
+                        <div class="cs-ds-swatch-item">
+                            <div class="cs-ds-swatch-box" style="background: #EE990A;"></div>
+                            <div class="cs-ds-swatch-info">
+                                <span class="cs-ds-swatch-name">In Progress & Buttons</span>
+                                <span class="cs-ds-swatch-hex">#EE990A</span>
+                            </div>
+                        </div>
+
+                        <!-- Broken -->
+                        <div class="cs-ds-swatch-item">
+                            <div class="cs-ds-swatch-box" style="background: #CB3236;"></div>
+                            <div class="cs-ds-swatch-info">
+                                <span class="cs-ds-swatch-name">Broken / Delayed</span>
+                                <span class="cs-ds-swatch-hex">#CB3236</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Swatch Graphics Grid (3x2) -->
+                    <div class="cs-ds-swatch-graphic-grid">
+                        <!-- Swatch 1: Light blue with logo symbol -->
+                        <div class="cs-ds-swatch-graphic-box" style="background: #D5E3FC;">
+                            <img src="works-citizen-connect/citizen-connect-logo.png" alt="Logo on Light Blue" class="cs-ds-swatch-graphic-img">
+                        </div>
+
+                        <!-- Swatch 2: Green with logo symbol -->
+                        <div class="cs-ds-swatch-graphic-box" style="background: #107710;">
+                            <img src="works-citizen-connect/citizen-connect-logo.png" alt="Logo on Green" class="cs-ds-swatch-graphic-img">
+                        </div>
+
+                        <!-- Swatch 3: Red with logo symbol -->
+                        <div class="cs-ds-swatch-graphic-box" style="background: #CB3236;">
+                            <img src="works-citizen-connect/citizen-connect-logo.png" alt="Logo on Red" class="cs-ds-swatch-graphic-img">
+                        </div>
+
+                        <!-- Swatch 4: Split primary/secondary -->
+                        <div class="cs-ds-swatch-graphic-box" style="background: linear-gradient(180deg, #1B3052 75%, #D5E3FC 75%);">
+                        </div>
+
+                        <!-- Swatch 5: Split green/orange -->
+                        <div class="cs-ds-swatch-graphic-box" style="background: linear-gradient(180deg, #107710 75%, #EE990A 75%);">
+                        </div>
+
+                        <!-- Swatch 6: Solid red -->
+                        <div class="cs-ds-swatch-graphic-box" style="background: #CB3236;">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="cs-h2" style="font-size: 24px; margin-top: 40px; margin-bottom: -4px;">Typography</h3>
+
+                <!-- Typography Specification Card -->
+                <div class="cs-ds-typo-card">
+                    <!-- Headline Example -->
+                    <div class="cs-ds-typo-item">
+                        <span class="cs-ds-typo-label">Headline Example</span>
+                        <h4 class="cs-ds-typo-headline">Inter Bold - 32px</h4>
+                    </div>
+
+                    <!-- Subhead Example -->
+                    <div class="cs-ds-typo-item">
+                        <span class="cs-ds-typo-label">Subhead Example</span>
+                        <h5 class="cs-ds-typo-subhead">Inter Medium - 18px</h5>
+                    </div>
+
+                    <!-- Body Example -->
+                    <div class="cs-ds-typo-item">
+                        <span class="cs-ds-typo-label">Body Example</span>
+                        <p class="cs-ds-typo-body">
+                            Inter Regular - 14px. Citizen Connect empowers voters through data transparency.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="cs-h2" style="font-size: 24px; margin-top: 40px; margin-bottom: -4px;">UI Components Library</h3>
+
+                <!-- UI Components Library Showcase Box -->
+                <div class="cs-ds-library-box">
+                    <!-- Row 1: Side by side (Profile and Progress) -->
+                    <div class="cs-ds-lib-row-top">
+                        <!-- Candidate Profile Component -->
+                        <div class="cs-ds-lib-card">
+                            <span class="cs-ds-lib-label">Candidate Profile</span>
+                            <div class="cs-lib-profile-wrap">
+                                <div class="cs-lib-profile-avatar">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                </div>
+                                <div class="cs-lib-profile-info">
+                                    <h4 class="cs-lib-profile-name">Candidate Name</h4>
+                                    <div class="cs-lib-match-badge">90% Match</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Status Component -->
+                        <div class="cs-ds-lib-card">
+                            <span class="cs-ds-lib-label">Progress Status</span>
+                            <div class="cs-lib-progress-wrap">
+                                <div class="cs-lib-progress-circle">
+                                    <div class="cs-lib-progress-inner">
+                                        <span class="cs-lib-progress-val">65%</span>
+                                        <span class="cs-lib-progress-label">COMPLETED</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Status Badges -->
+                    <div class="cs-ds-lib-card">
+                        <span class="cs-ds-lib-label">Interactive Status Badges</span>
+                        <div class="cs-lib-badges-wrap">
+                            <span class="cs-lib-badge fulfilled">Fulfilled</span>
+                            <span class="cs-lib-badge in-progress">In Progress</span>
+                            <span class="cs-lib-badge broken">Broken</span>
+                            <span class="cs-lib-badge outline">Outline Secondary</span>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Navigation & Filtering -->
+                    <div class="cs-ds-lib-card">
+                        <span class="cs-ds-lib-label">Navigation & Filtering</span>
+                        <div class="cs-lib-nav-wrap">
+                            <div class="cs-lib-search-box">
+                                <div class="cs-lib-search-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                </div>
+                                <input type="text" placeholder="Search legislation, candidates, or districts..." class="cs-lib-search-input" disabled>
+                            </div>
+                            <button class="cs-lib-filter-btn" disabled>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                                <span>Filter</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Record List Pattern -->
+                    <div class="cs-ds-lib-card">
+                        <span class="cs-ds-lib-label">Record List Pattern</span>
+                        <div class="cs-lib-table-wrap">
+                            <table class="cs-lib-table">
+                                <thead>
+                                    <tr>
+                                        <th>Legislation</th>
+                                        <th>Sponsor</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>HB-2041: Public Works Transparency Act</strong></td>
+                                        <td>Rep. J. Smith</td>
+                                        <td>
+                                            <span class="cs-lib-table-badge">In Progress</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reflection & HiFi UI Section -->
+            <section class="cs-section" id="reflection">
+                <div class="cs-section-label">HIGH-FIDELITY UI & REFLECTION</div>
+                <h2 class="cs-h2">Bridging complexity with public usability.</h2>
+                <p class="cs-p">
+                    The final high-fidelity designs for Citizen Connect focus on turning dense, intimidating civic data into engaging, interactive interfaces. The platform is built around two core operating states:
+                </p>
+
+                <h3 class="cs-h2" style="font-size: 24px; margin-top: 24px; margin-bottom: -16px;">Pre-Election Mode (Empowered Voting)</h3>
+
+                <div class="cs-hifi-container">
+                    <!-- Row 1: Candidate Profiles Video Showcase -->
+                    <div class="cs-hifi-row">
+                        <div class="cs-hifi-video-card">
+                            <video class="cs-hifi-video-screen" autoplay loop muted playsinline>
+                                <source src="works-citizen-connect-vids/citizen-connect-home&profile.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="cs-hifi-details">
+                            <div class="cs-hifi-pill-header">Candidate Profiles</div>
+                            <p class="cs-hifi-desc">
+                                Objective platforms, voting records, and education history.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Policy Stance Matrix Video Showcase -->
+                    <div class="cs-hifi-row">
+                        <div class="cs-hifi-video-card">
+                            <video class="cs-hifi-video-screen" autoplay loop muted playsinline>
+                                <source src="works-citizen-connect-vids/citizen-connect-policy-stance-matrix.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="cs-hifi-details">
+                            <div class="cs-hifi-pill-header">Policy Stance Matrix</div>
+                            <p class="cs-hifi-desc">
+                                Stances on key local issues like transit, education, and resilience.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Priority Matcher Video Showcase -->
+                    <div class="cs-hifi-row">
+                        <div class="cs-hifi-video-card">
+                            <video class="cs-hifi-video-screen" autoplay loop muted playsinline>
+                                <source src="works-citizen-connect-vids/citizen-connect-priority-matcher.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="cs-hifi-details">
+                            <div class="cs-hifi-pill-header">Priority Matcher</div>
+                            <p class="cs-hifi-desc">
+                                Rank the local issues you care about most, and instantly see which candidates prioritize those same developments in their campaign platforms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="cs-h2" style="font-size: 24px; margin-top: 48px; margin-bottom: -16px;">Governance Mode (Post-Election Accountability)</h3>
+
+                <div class="cs-hifi-container">
+                    <!-- Row 1: Promise Tracker Dashboard Video Showcase -->
+                    <div class="cs-hifi-row">
+                        <div class="cs-hifi-video-card">
+                            <video class="cs-hifi-video-screen" autoplay loop muted playsinline>
+                                <source src="works-citizen-connect-vids/citizen-connect-promises.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="cs-hifi-details">
+                            <div class="cs-hifi-pill-header">Promise Tracker Dashboard</div>
+                            <p class="cs-hifi-desc">
+                                Visual status meters tracking campaign promises with transparent status tags.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Legislative & Ordinance Log Video Showcase -->
+                    <div class="cs-hifi-row">
+                        <div class="cs-hifi-video-card">
+                            <video class="cs-hifi-video-screen" autoplay loop muted playsinline>
+                                <source src="works-citizen-connect-vids/citizen-connect-legistative&ordinance.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="cs-hifi-details">
+                            <div class="cs-hifi-pill-header">Legislative & Ordinance Log</div>
+                            <p class="cs-hifi-desc">
+                                A history of sponsored laws, authored resolutions, and official votes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Public Project & Budget Map Video Showcase -->
+                    <div class="cs-hifi-row">
+                        <div class="cs-hifi-video-card">
+                            <video class="cs-hifi-video-screen" autoplay loop muted playsinline>
+                                <source src="works-citizen-connect-vids/citizen-connect-project&budget.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="cs-hifi-details">
+                            <div class="cs-hifi-pill-header">Public Project & Budget Map</div>
+                            <p class="cs-hifi-desc">
+                                An interactive city map showing ongoing infrastructure project updates, contractors, and expenditures.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Community Project Referendums Video Showcase -->
+                    <div class="cs-hifi-row">
+                        <div class="cs-hifi-video-card">
+                            <video class="cs-hifi-video-screen" autoplay loop muted playsinline>
+                                <source src="works-citizen-connect-vids/citizen-connect-projectreferendums.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="cs-hifi-details">
+                            <div class="cs-hifi-pill-header">Community Project Referendums</div>
+                            <p class="cs-hifi-desc">
+                                A direct voting tool where citizens cast an "Agree" or "Disagree" vote on newly proposed city projects, showing officials exactly where the community stands on new proposals.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="cs-h2" style="margin-top: 56px;">What I've Learned</h2>
+
+                <!-- Reflection Grid -->
+                <div class="cs-reflection-grid">
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Simplyfying Data Complexity</h3>
+                        <p class="cs-ref-card-text">
+                            Civic tech is incredibly dense. I learned how to translate heavy datasets such as municipal budgets and campaign promises into scannable visual patterns (progress rings, map pins) that anyone can read.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Transparency builds trust</h3>
+                        <p class="cs-ref-card-text">
+                            Giving residents step-by-step progress tracking of their municipal requests removes the feeling of bureaucracy and dramatically increases participation.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Stepping up to the challenge = the best chance to learn</h3>
+                        <p class="cs-ref-card-text">
+                            Originally, designing a massive dual-mode web platform was outside my comfort zone. But by taking on the challenge, I was able to push my limits and grow rapidly.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="cs-h2" style="margin-top: 56px;">What's Next?</h2>
+                <p class="cs-ref-subtitle">
+                    Future roadmap items planned for Citizen Connect.
+                </p>
+
+                <div class="cs-reflection-grid">
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Offline SMS Ticket Submission</h3>
+                        <p class="cs-ref-card-text">
+                            Allowing users without active smartphone data connections to report municipal problems using offline text message syntax parsed automatically by our dashboards.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Multi-Lingual AI Audio Feeds</h3>
+                        <p class="cs-ref-card-text">
+                            Integrating voice translations and transcription streams into public town halls, allowing diverse cultural communities to fully participate in real-time discussions.
+                        </p>
+                    </div>
+                    <div class="cs-reflection-card">
+                        <h3 class="cs-ref-card-title">Open API Data Feeds</h3>
+                        <p class="cs-ref-card-text">
+                            Publishing anonymized city repair ticket sets via open APIs so independent developer communities can build secondary tracking charts or map utilities.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 48px; width: 100%; border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(0,0,0,0.06);">
+                    <img src="works-citizen-connect/citizen-connect-team-error-404.png" alt="Citizen Connect App Interface Showcase Collage" style="width: 100%; display: block; height: auto;">
+                </div>
+            </section>
+
+        </article>
+
+    </main>
+
+    <!-- ==========================================================================
+         GLOBAL FOOTER (Exact replica from index.html)
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="footer-top-container">
+            <!-- Left Side: Logo + Arien Destriza -->
+            <div class="footer-brand-wrap">
+                <img src="img/yen-final-logo.png" alt="Logo" class="footer-asterisk-icon">
+                <span class="footer-brand-name">Arien Destriza</span>
+            </div>
+
+            <!-- Right Side: 2 Columns (Main & Contact) -->
+            <div class="footer-columns-wrap">
+                <!-- Col 1: Main -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Main</span>
+                    <div class="footer-nav-list">
+                        <a href="index.html#work" class="footer-nav-link">Work</a>
+                        <a href="about.html" class="footer-nav-link">About</a>
+                        <a href="explorations.html" class="footer-nav-link">Explorations</a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Contact -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Contact</span>
+                    <a href="mailto:yindestriza@gmail.com" class="footer-contact-link">yindestriza@gmail.com</a>
+                    
+                    <span class="footer-col-header" style="margin-top: 20px;">Phone</span>
+                    <span class="footer-phone-text">0908-772-4983</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giant Bottom Banner Typography -->
+        <div class="footer-giant-banner">
+            Arien Destriza
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <!-- JS Scripts (Lenis & Dark Mode toggler synced) -->
+    <script src="js/main.js"></script>
+
+    <!-- Dynamic Scroll spy and active state links -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Table of Contents Active Link Tracking on Scroll
+            const tocLinks = document.querySelectorAll('.cs-toc-link');
+            const caseSections = document.querySelectorAll('section.cs-section[id]');
+
+            function updateActiveToC() {
+                const scrollPos = window.scrollY + 250; // offset to trigger active state early
+                
+                // If scroll is near top, default to first section (Context)
+                if (window.scrollY < 300) {
+                    tocLinks.forEach((l, idx) => {
+                        if (idx === 0) l.classList.add('active');
+                        else l.classList.remove('active');
+                    });
+                    return;
+                }
+
+                let currentId = '';
+                caseSections.forEach(section => {
+                    const top = section.offsetTop;
+                    const height = section.offsetHeight;
+                    const id = section.getAttribute('id');
+                    
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        currentId = id;
+                    }
+                });
+
+                // Fallback for bottom of page (highlight Reflection if scrolled to the end of the content)
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 150) {
+                    currentId = 'reflection';
+                }
+
+                if (currentId) {
+                    tocLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            }
+
+            window.addEventListener('scroll', updateActiveToC);
+            window.addEventListener('resize', updateActiveToC);
+            updateActiveToC(); // Run once initially
+        });
+    </script>
+</body>
+</html>

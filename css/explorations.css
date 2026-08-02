@@ -1,0 +1,289 @@
+/* ==========================================================================
+   PAGE STYLES: Explorations Gallery (explorations.css)
+   Clean, premium layout with dynamic theme support
+   ========================================================================== */
+
+.explorations-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 160px 40px 100px;
+}
+
+.explorations-header {
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.back-to-work {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-muted-dark);
+    text-decoration: none;
+    margin-bottom: 24px;
+    transition: color var(--transition);
+}
+
+.back-to-work:hover {
+    color: var(--text-dark);
+}
+
+.back-to-work .arrow {
+    transition: transform var(--transition);
+    display: inline-block;
+}
+
+.back-to-work:hover .arrow {
+    transform: translateX(-4px);
+}
+
+.explorations-title {
+    font-family: var(--font-serif);
+    font-size: clamp(48px, 8vw, 84px);
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: -2.5px;
+    line-height: 1;
+    margin-bottom: 16px;
+    text-transform: lowercase;
+}
+
+.explorations-subtitle {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-muted-dark);
+    letter-spacing: -0.5px;
+}
+
+/* Section styling */
+.exp-section {
+    margin-bottom: 120px;
+}
+
+/* 2-column info layout */
+.exp-row-2col {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 900px) {
+    .exp-row-2col {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+.exp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.exp-section-title {
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: -0.8px;
+    margin: 0;
+}
+
+.exp-tags {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: -0.3px;
+}
+
+.exp-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-muted-dark);
+}
+
+/* Grid of visual assets */
+.sbg-grid-row1 {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.sbg-grid-row2 {
+    display: grid;
+    grid-template-columns: 451fr 245fr 424fr;
+    gap: 20px;
+}
+
+.exp-img-wrapper {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 16px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+body.dark-mode .exp-img-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.exp-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fit precise proportions and heights */
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.exp-img-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .exp-img-wrapper:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.exp-img-wrapper:hover img {
+    transform: scale(1.02);
+}
+
+/* Specific Wrapper Heights */
+.main-sbg-logo, .main-gd-logo, .main-photo-wrapper {
+    height: 380px;
+    width: 100%;
+}
+
+.sbg-grid-row1 .exp-img-wrapper {
+    height: 260px;
+}
+
+.sbg-grid-row2 .exp-img-wrapper {
+    height: 240px;
+}
+
+.coming-soon-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: rgba(0,0,0,0.05);
+    color: var(--text-muted-dark);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 999px;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+body.dark-mode .coming-soon-tag {
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* ==========================================================================
+   8. GRAPHIC DESIGN GRID
+   ========================================================================== */
+.gd-grid-container {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.gd-grid-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gd-grid-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gd-wrapper-landscape {
+    height: 380px;
+}
+
+.gd-wrapper-icons {
+    height: 180px;
+}
+
+.gd-wrapper-square {
+    height: 280px;
+}
+
+.gd-grid-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.gd-wrapper-bottom {
+    height: 340px;
+}
+
+@media (max-width: 900px) {
+    .sbg-grid-row1 {
+        grid-template-columns: 1fr;
+    }
+    .sbg-grid-row1 .exp-img-wrapper {
+        height: 260px;
+    }
+    .sbg-grid-row2 {
+        grid-template-columns: 1fr;
+    }
+    .sbg-grid-row2 .exp-img-wrapper {
+        height: 260px;
+    }
+    .gd-grid-container {
+        grid-template-columns: 1fr;
+    }
+    .gd-grid-bottom {
+        grid-template-columns: 1fr;
+    }
+    .gd-wrapper-landscape, .gd-wrapper-icons, .gd-wrapper-square, .gd-wrapper-bottom {
+        height: 260px;
+    }
+    .pg-grid-row1, .pg-grid-row2 {
+        grid-template-columns: 1fr;
+    }
+    .pg-grid-row1 .exp-img-wrapper, .pg-grid-row2 .exp-img-wrapper {
+        height: 260px;
+    }
+}
+
+/* ==========================================================================
+   9. PHOTOGRAPHY GRID
+   ========================================================================== */
+.pg-grid-row1 {
+    display: grid;
+    grid-template-columns: 1.6fr 0.8fr 1.1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.pg-grid-row1 .exp-img-wrapper {
+    height: 320px;
+}
+
+.pg-grid-row2 {
+    display: grid;
+    grid-template-columns: 0.8fr 1.6fr 1.1fr;
+    gap: 20px;
+}
+
+.pg-grid-row2 .exp-img-wrapper {
+    height: 320px;
+}

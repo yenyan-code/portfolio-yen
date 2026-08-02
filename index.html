@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arien Destriza | UI/UX Designer &amp; Product Builder</title>
+    <meta name="description" content="Arien crafts intuitive, accessible experiences through human-centered design & visual systems.">
+    
+    <!-- External Stylesheets (Structured cleanly as in yen-tweaking) -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/home.css">
+
+    <!-- Lenis Smooth Scrolling CDN -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Prevent dark mode flash of unstyled content -->
+    <script>
+        if (localStorage.getItem('arien_dark_mode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- ==========================================================================
+         FLOATING TOP NAVIGATION BAR & TOP-LEFT LOGO
+         Exact replica of Arien's design layout
+         ========================================================================== -->
+    <header class="header-nav">
+        <a href="index.html" class="header-logo">
+            <img src="img/yen-final-logo.png" alt="Logo" class="logo-icon">
+            <span>Arien Destriza</span>
+        </a>
+        <div class="navbar-pill-wrap">
+            <nav class="navbar-pill">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="explorations.html" class="nav-link">Explorations</a>
+                <a href="https://drive.google.com/file/d/1kz8zw9jtlvqincgCbemYBvrQwv8y7zAo/view?usp=drive_link" target="_blank" rel="noopener" class="nav-link">Resume</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
+                <span class="dark-mode-text">Dark Mode</span>
+                <span class="dark-mode-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================================================
+             INTRO / HERO SECTION (2-Column Arien Destriza Layout)
+             ========================================================================== -->
+        <section class="intro-section" id="intro">
+            <div class="hero-grid">
+                <!-- Left Column: Big Headline & Emojis -->
+                <div class="hero-left-col">
+                    <h1 class="hero-headline">
+                        <span class="underline-name">Arien</span> crafts intuitive,<br>
+                        accessible <span class="italic-exp">experiences</span><br>
+                        through human-centered<br>
+                        design &amp; visual systems.
+                    </h1>
+
+                    <div class="hero-sub-bullets">
+                        <div class="hero-bullet-item">
+                            <span class="bullet-emoji"></span>
+                            <span>UI/UX Designer specializing in Figma &amp; Design Systems</span>
+                        </div>
+                        <div class="hero-bullet-item">
+                            <span class="bullet-emoji"></span>
+                            <span>Open for UI/UX Design positions</span>
+                        </div>
+                    </div>
+                    <a href="about.html" class="hero-about-btn">
+                        About me <span class="btn-arrow">↗</span>
+                    </a>
+                </div>
+
+                <!-- Right Column: Avatar Sketch -->
+                <div class="hero-right-col">
+                    <div class="hero-photo-wrap">
+                        <img src="img/my-notion-face-transparent (3).png" alt="Arien Destriza" class="hero-portrait-img light-avatar">
+                        <img src="img/my-notion-face-transparent (1).png" alt="Arien Destriza" class="hero-portrait-img dark-avatar">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             WORK SECTION ("work" lowercase serif title + 4 colored cards)
+             ========================================================================== -->
+        <section class="work-section" id="work">
+            <h2 class="section-title-lowercase light">work</h2>
+
+            <div class="works-grid-2col">
+                <!-- Card 1: Recipely -->
+                <a href="recipely-case-study.html" class="work-card-exact">
+                    <div class="work-card-img-box bg-recipely">
+                        <div class="ui-illustration">
+                            <div class="ui-header">
+                                <span class="ui-dot" style="background:#FF5F56;"></span>
+                                <span class="ui-dot" style="background:#FFBD2E;"></span>
+                                <span class="ui-dot" style="background:#27C93F;"></span>
+                            </div>
+                            <div class="ui-body" style="background: linear-gradient(180deg, #FFF4FF 0%, #F5DDF5 100%);">
+                                <img src="works-recipely-img/Recipely Logo.png" alt="Recipely Logo" style="width: auto; height: 115px; max-height: 80%; object-fit: contain; display: block;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-info">
+                        <h3 class="work-card-title-exact">Recipely</h3>
+                        <p class="work-card-sub-exact">A mobile app focused on transforming everyday leftover ingredients into delicious meals through AI-powered camera scanning.</p>
+                    </div>
+                </a>
+
+                <!-- Card 2: Citizen Connect -->
+                <a href="citizen-connect-case-study.html" class="work-card-exact">
+                    <div class="work-card-img-box bg-citizen">
+                        <div class="ui-illustration" style="background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06);">
+                            <div class="ui-header" style="background: #FAFAFA; border-bottom: 1px solid rgba(0,0,0,0.06);">
+                                <span class="ui-dot" style="background:#FF5F56;"></span>
+                                <span class="ui-dot" style="background:#FFBD2E;"></span>
+                                <span class="ui-dot" style="background:#27C93F;"></span>
+                            </div>
+                            <div class="ui-body" style="background: linear-gradient(180deg, #F4F7FF 0%, #D9E6FF 100%);">
+                                <img src="works-citizen-connect/citizen-connect-logo.png" alt="Citizen Connect Logo" style="width: auto; height: 180px; max-height: 90%; object-fit: contain; display: block;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-info">
+                        <h3 class="work-card-title-exact">Citizen Connect</h3>
+                        <p class="work-card-sub-exact">A responsive web application focused on empowering voters and tracking government accountability through open-data promise and project dashboards.</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             EXPLORATIONS SECTION ("explorations" lowercase serif title + black background)
+             ========================================================================== -->
+        <div class="play-section-wrapper" id="explorations">
+            <section class="play-section">
+                <div class="play-header-row">
+                    <h2 class="section-title-lowercase">explorations</h2>
+                    <a href="explorations.html" class="view-all-link">View all</a>
+                </div>
+
+                <div class="play-grid-3col">
+                    <!-- Play Card 1: Visual Identity -->
+                    <a href="explorations.html#sayao-garden" class="play-card-exact">
+                        <div class="play-card-img-box">
+                            <img src="explorations-img/sbg-logo.png" alt="Visual Identity" class="play-img">
+                        </div>
+                        <div class="play-card-info-exact">
+                            <h3 class="play-card-title-exact">Visual Identity</h3>
+                            <p class="play-card-sub-exact">Full identity for Sayao Backyard Garden</p>
+                        </div>
+                    </a>
+
+                    <!-- Play Card 2: Graphic Design -->
+                    <a href="explorations.html#graphic-design" class="play-card-exact">
+                        <div class="play-card-img-box">
+                            <img src="explorations-img/yen-graphic-design.png" alt="Graphic Design" class="play-img">
+                        </div>
+                        <div class="play-card-info-exact">
+                            <h3 class="play-card-title-exact">Graphic Design</h3>
+                            <p class="play-card-sub-exact">Custom graphics</p>
+                        </div>
+                    </a>
+
+                    <!-- Play Card 3: Photography -->
+                    <a href="explorations.html#photography" class="play-card-exact">
+                        <div class="play-card-img-box">
+                            <img src="explorations-img/yen-photography.png" alt="Photography" class="play-img">
+                        </div>
+                        <div class="play-card-info-exact">
+                            <h3 class="play-card-title-exact">Photography</h3>
+                            <p class="play-card-sub-exact">Capturing light &amp; story</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         GLOBAL FOOTER (Exact replica of Itti's footer)
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="footer-top-container">
+            <!-- Left Side: Icon + Arien Destriza -->
+            <div class="footer-brand-wrap">
+                <img src="img/yen-final-logo.png" alt="Logo" class="footer-asterisk-icon">
+                <span class="footer-brand-name">Arien Destriza</span>
+            </div>
+
+            <!-- Right Side: 2 Columns (Main & Contact) -->
+            <div class="footer-columns-wrap">
+                <!-- Col 1: Main -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Main</span>
+                    <div class="footer-nav-list">
+                        <a href="#work" class="footer-nav-link">Work</a>
+                        <a href="about.html" class="footer-nav-link">About</a>
+                        <a href="#explorations" class="footer-nav-link">Explorations</a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Contact -->
+                <div class="footer-col">
+                    <span class="footer-col-header">Contact</span>
+                    <a href="mailto:yindestriza@gmail.com" class="footer-contact-link">yindestriza@gmail.com</a>
+                    
+                    <span class="footer-col-header" style="margin-top: 20px;">Phone</span>
+                    <span class="footer-phone-text">0908-772-4983</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giant Bottom Banner Typography -->
+        <div class="footer-giant-banner">
+            <span>Arien Destriza</span>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <!-- Custom JavaScript Files (Modular separation as in yen-tweaking) -->
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
