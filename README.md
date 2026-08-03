@@ -2,7 +2,7 @@
 
 Welcome to the source code of my personal portfolio website! 
 
-This repository contains the code for my digital portfolio, where I showcase my case studies, UI/UX design projects, and creative explorations. The site is designed with a focus on modern aesthetics, accessibility, and extremely smooth user interactions.
+This repository contains the code for my digital portfolio, where I showcase my case studies, UI/UX design projects, and creative explorations. 
 
 🌍 **Live Site:** https://portfolio-arien.vercel.app/
 
