@@ -8,7 +8,7 @@ This repository contains the code for my digital portfolio, where I showcase my 
 
 ## 🛠️ Built With
 
-This portfolio was built from scratch without heavy frameworks to ensure lightning-fast load times and complete control over the design system:
+This portfolio was built without heavy frameworks to ensure lightning-fast load times and complete control over the design system:
 
 * **HTML5** for semantic, accessible structure
 * **Vanilla CSS** with a custom design system (CSS variables, flexbox/grid)
